@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0f172a">
-<meta name="description" content="Accountant Assistant and Document Explorer">
-<title>Accountant Assistant</title>
+<meta name="description" content="Accountant Assistant and Document Explorer - Advanced accounting tools with receipt processing and research capabilities">
+<meta name="keywords" content="accounting, receipts, invoices, documents, research, explorer">
+<title>Accountant Assistant - Advanced Accounting Tools</title>
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
@@ -69,7 +70,8 @@ button{cursor:pointer}
     display:grid;
     place-items:center;
     background:linear-gradient(135deg,#2563eb,#7c3aed);
-    font-size:22px
+    font-size:22px;
+    aria-label: "Accountant Assistant"
 }
 
 .brand-title{font-weight:800;font-size:16px}
@@ -95,13 +97,19 @@ button{cursor:pointer}
     gap:10px;
     align-items:center;
     margin-bottom:3px;
-    text-align:left
+    text-align:left;
+    transition:all .2s ease
 }
 
 .nav-button:hover,
 .nav-button.active{
     background:#1e293b;
     color:#fff
+}
+
+.nav-button:focus{
+    outline:2px solid #60a5fa;
+    outline-offset:2px
 }
 
 .main{
@@ -171,7 +179,8 @@ button{cursor:pointer}
 .stat-label{
     color:var(--muted);
     font-size:11px;
-    font-weight:750
+    font-weight:750;
+    text-transform:uppercase
 }
 
 .stat-value{
@@ -194,11 +203,13 @@ button{cursor:pointer}
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    gap:7px
+    gap:7px;
+    transition:all .2s ease
 }
 
 .btn-primary{background:var(--primary);color:#fff}
 .btn-primary:hover{background:var(--primary-dark)}
+.btn-primary:focus{outline:2px solid var(--primary);outline-offset:2px}
 .btn-success{background:var(--success);color:#fff}
 .btn-warning{background:var(--warning);color:#fff}
 .btn-danger{background:var(--danger);color:#fff}
@@ -251,7 +262,8 @@ textarea{
     padding:9px 10px;
     background:#fff;
     color:var(--text);
-    outline:none
+    outline:none;
+    transition:all .2s ease
 }
 
 input:focus,select:focus,textarea:focus{
@@ -275,7 +287,8 @@ th{
     padding:10px;
     text-align:left;
     border-bottom:1px solid var(--border);
-    white-space:nowrap
+    white-space:nowrap;
+    font-weight:700
 }
 
 td{
@@ -308,7 +321,13 @@ td{
     place-items:center;
     text-align:center;
     padding:28px;
-    transition:.2s
+    transition:.2s;
+    cursor:pointer
+}
+
+.dropzone:focus-within{
+    border-color:var(--primary);
+    background:#dbeafe
 }
 
 .dropzone.dragover{
@@ -322,7 +341,8 @@ td{
     height:8px;
     background:#e2e8f0;
     border-radius:999px;
-    overflow:hidden
+    overflow:hidden;
+    role: "progressbar"
 }
 
 .progress-bar{
@@ -341,7 +361,8 @@ td{
     min-height:90px;
     max-height:230px;
     overflow:auto;
-    white-space:pre-wrap
+    white-space:pre-wrap;
+    role: "log"
 }
 
 .alert{
@@ -349,12 +370,13 @@ td{
     padding:10px 12px;
     font-size:11px;
     line-height:1.5;
-    margin-bottom:12px
+    margin-bottom:12px;
+    role: "alert"
 }
 
-.alert-info{background:#eff6ff;color:#1e40af}
-.alert-warning{background:#fffbeb;color:#92400e}
-.alert-success{background:#f0fdf4;color:#166534}
+.alert-info{background:#eff6ff;color:#1e40af;border-left:4px solid #2563eb}
+.alert-warning{background:#fffbeb;color:#92400e;border-left:4px solid #d97706}
+.alert-success{background:#f0fdf4;color:#166534;border-left:4px solid #16a34a}
 
 .search-box{position:relative}
 .search-box input{padding-left:37px}
@@ -362,7 +384,8 @@ td{
     position:absolute;
     left:12px;
     top:9px;
-    color:#94a3b8
+    color:#94a3b8;
+    pointer-events:none
 }
 
 .result-list{display:grid;gap:9px;margin-top:14px}
@@ -372,10 +395,12 @@ td{
     border-radius:10px;
     padding:12px;
     cursor:pointer;
-    background:#fff
+    background:#fff;
+    transition:all .2s ease
 }
 
-.result-item:hover{border-color:#93c5fd}
+.result-item:hover{border-color:#93c5fd;background:#f8fafc}
+.result-item:focus{outline:2px solid #2563eb;outline-offset:2px}
 
 .result-name{font-weight:800;font-size:12px}
 .result-meta{font-size:10px;color:var(--muted);margin-top:4px}
@@ -395,8 +420,11 @@ td{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:10px
+    gap:10px;
+    transition:all .2s ease
 }
+
+.file-row:hover{background:#f8fafc}
 
 .file-row-name{
     font-size:11px;
@@ -483,7 +511,7 @@ td{
     padding:11px
 }
 
-.kpi-label{font-size:9px;color:var(--muted)}
+.kpi-label{font-size:9px;color:var(--muted);text-transform:uppercase}
 .kpi-value{font-size:20px;font-weight:800;margin-top:3px}
 
 .ai-answer{white-space:pre-wrap;line-height:1.65;font-size:12px;color:#1e293b}
@@ -493,7 +521,18 @@ td{
 .ai-muted{font-size:10px;color:var(--muted);line-height:1.5}
 .ai-provider-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .ai-key{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-@media(max-width:760px){.ai-provider-grid{grid-template-columns:1fr}}
+
+.version-badge{
+    display:inline-block;
+    background:#e0e7ff;
+    color:#3730a3;
+    padding:2px 6px;
+    border-radius:4px;
+    font-size:9px;
+    font-weight:700;
+    margin-left:8px;
+    text-transform:uppercase
+}
 
 @media(max-width:1100px){
     .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -519,6 +558,16 @@ td{
     .content{padding:14px}
 
     .grid-4,.grid-2{grid-template-columns:1fr}
+    
+    .ai-provider-grid{grid-template-columns:1fr}
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 </style>
 </head>
@@ -527,55 +576,56 @@ td{
 
 <div class="app">
 
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
 
     <div class="brand">
-        <div class="brand-icon">📚</div>
+        <div class="brand-icon" aria-hidden="true">📚</div>
         <div>
             <div class="brand-title">Accountant Assistant</div>
             <div class="brand-subtitle">Accounting + Research</div>
+            <span class="version-badge">v2.0</span>
         </div>
     </div>
 
     <div class="nav-section">Workspace</div>
 
-    <button class="nav-button active" data-page="dashboard">
+    <button class="nav-button active" data-page="dashboard" aria-label="Dashboard">
         🏠 <span>Dashboard</span>
     </button>
 
-    <button class="nav-button" data-page="accounting">
+    <button class="nav-button" data-page="accounting" aria-label="Accountancy">
         🧾 <span>Accountancy</span>
     </button>
 
-    <button class="nav-button" data-page="documents">
+    <button class="nav-button" data-page="documents" aria-label="Documents and sources">
         📂 <span>Documents & Sources</span>
     </button>
 
-    <button class="nav-button" data-page="explorer">
+    <button class="nav-button" data-page="explorer" aria-label="Document explorer">
         🔎 <span>Document Explorer</span>
     </button>
 
-    <button class="nav-button" data-page="ai">
+    <button class="nav-button" data-page="ai" aria-label="Tiny AI assistant">
         ✨ <span>Tiny AI</span>
     </button>
 
     <div class="nav-section">Work</div>
 
-    <button class="nav-button" data-page="matches">
+    <button class="nav-button" data-page="matches" aria-label="Matching queue">
         🔗 <span>Matching Queue</span>
     </button>
 
-    <button class="nav-button" data-page="reports">
+    <button class="nav-button" data-page="reports" aria-label="Reports">
         📑 <span>Reports</span>
     </button>
 
-    <button class="nav-button" data-page="output">
+    <button class="nav-button" data-page="output" aria-label="Outputs">
         📊 <span>Outputs</span>
     </button>
 
     <div class="nav-section">System</div>
 
-    <button class="nav-button" data-page="settings">
+    <button class="nav-button" data-page="settings" aria-label="Settings">
         ⚙️ <span>Settings</span>
     </button>
 
@@ -587,13 +637,13 @@ td{
 <header class="topbar">
 
     <div style="display:flex;align-items:center;gap:10px">
-        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation menu">☰</button>
         <div class="page-title" id="pageTitle">Dashboard</div>
     </div>
 
-    <div class="status-pill">
+    <div class="status-pill" aria-live="polite" aria-atomic="true">
         <span class="status-dot"></span>
-        Local workspace
+        <span>Local workspace</span>
     </div>
 
 </header>
@@ -612,25 +662,25 @@ td{
 
         <div class="card">
             <div class="stat-label">Documents</div>
-            <div class="stat-value" id="statDocuments">0</div>
+            <div class="stat-value" id="statDocuments" aria-live="polite">0</div>
             <div class="stat-small">Files indexed</div>
         </div>
 
         <div class="card">
             <div class="stat-label">Sources</div>
-            <div class="stat-value" id="statSources">0</div>
+            <div class="stat-value" id="statSources" aria-live="polite">0</div>
             <div class="stat-small">Folders / Drive links</div>
         </div>
 
         <div class="card">
             <div class="stat-label">Matched</div>
-            <div class="stat-value" id="statMatched">0</div>
+            <div class="stat-value" id="statMatched" aria-live="polite">0</div>
             <div class="stat-small">Confirmed relationships</div>
         </div>
 
         <div class="card">
             <div class="stat-label">Reports</div>
-            <div class="stat-value" id="statReports">0</div>
+            <div class="stat-value" id="statReports" aria-live="polite">0</div>
             <div class="stat-small">Project reports</div>
         </div>
 
@@ -643,14 +693,14 @@ td{
         <div class="card action-card">
 
             <div>
-                <div class="action-icon">📷</div>
+                <div class="action-icon" aria-hidden="true">📷</div>
                 <div class="action-title">Scan with Camera</div>
                 <div class="action-description">
                     Capture receipts, décharges, invoices and supporting documents.
                 </div>
             </div>
 
-            <button class="btn btn-primary" onclick="openCamera()">
+            <button class="btn btn-primary" onclick="openCamera()" aria-label="Open camera to scan documents">
                 Open Camera
             </button>
 
@@ -660,7 +710,7 @@ td{
         <div class="card action-card">
 
             <div>
-                <div class="action-icon">📁</div>
+                <div class="action-icon" aria-hidden="true">📁</div>
                 <div class="action-title">Upload Files or Folder</div>
                 <div class="action-description">
                     Select individual documents or an entire accounting/project folder.
@@ -670,12 +720,14 @@ td{
             <div class="button-row">
 
                 <button class="btn btn-primary"
-                        onclick="chooseFiles()">
+                        onclick="chooseFiles()"
+                        aria-label="Choose files to upload">
                     Files
                 </button>
 
                 <button class="btn btn-primary"
-                        onclick="chooseFolder()">
+                        onclick="chooseFolder()"
+                        aria-label="Choose folder to upload">
                     Folder
                 </button>
 
@@ -687,7 +739,7 @@ td{
         <div class="card action-card">
 
             <div>
-                <div class="action-icon">☁️</div>
+                <div class="action-icon" aria-hidden="true">☁️</div>
                 <div class="action-title">Google Drive / Folder Source</div>
                 <div class="action-description">
                     Save a Drive folder link as a searchable project source.
@@ -695,7 +747,8 @@ td{
             </div>
 
             <button class="btn btn-primary"
-                    onclick="navigate('documents')">
+                    onclick="navigate('documents')"
+                    aria-label="Add Google Drive source">
                 Add Source
             </button>
 
@@ -713,12 +766,13 @@ td{
 
             <div class="search-box">
 
-                <span class="search-icon">🔎</span>
+                <span class="search-icon" aria-hidden="true">🔎</span>
 
                 <input
                     id="dashboardSearch"
                     type="text"
                     placeholder="Find contracts of 2024 and 2026..."
+                    aria-label="Quick research search box"
                     onkeydown="
                         if(event.key==='Enter')
                         runExplorerSearch(this.value)
@@ -733,7 +787,8 @@ td{
                     onclick="
                     runExplorerSearch(
                         document.getElementById('dashboardSearch').value
-                    )">
+                    )"
+                    aria-label="Search documents">
                 Search Documents
             </button>
 
@@ -751,16 +806,16 @@ td{
                 margin-bottom:6px;
             ">
                 <span>Current operation</span>
-                <strong id="processingLabel">Idle</strong>
+                <strong id="processingLabel" aria-live="polite" aria-atomic="true">Idle</strong>
             </div>
 
-            <div class="progress">
+            <div class="progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                 <div class="progress-bar" id="globalProgress"></div>
             </div>
 
             <div style="height:10px"></div>
 
-            <div class="log" id="dashboardLog">
+            <div class="log" id="dashboardLog" aria-label="System log">
 System ready.
             </div>
 
@@ -789,11 +844,11 @@ System ready.
 
         <div class="grid grid-2">
 
-            <div class="dropzone" id="dropzone">
+            <div class="dropzone" id="dropzone" role="region" aria-label="Document drop zone">
 
                 <div>
 
-                    <div class="dropzone-icon">📂</div>
+                    <div class="dropzone-icon" aria-hidden="true">📂</div>
 
                     <h3>Drop documents or a folder here</h3>
 
@@ -806,17 +861,20 @@ System ready.
                          style="justify-content:center">
 
                         <button class="btn btn-primary"
-                                onclick="chooseFiles()">
+                                onclick="chooseFiles()"
+                                aria-label="Choose files">
                             📄 Files
                         </button>
 
                         <button class="btn btn-primary"
-                                onclick="chooseFolder()">
+                                onclick="chooseFolder()"
+                                aria-label="Choose folder">
                             📁 Folder
                         </button>
 
                         <button class="btn btn-outline"
-                                onclick="openCamera()">
+                                onclick="openCamera()"
+                                aria-label="Open camera">
                             📷 Camera
                         </button>
 
@@ -836,7 +894,7 @@ System ready.
 
                     <div class="form-group">
 
-                        <label>
+                        <label for="driveSourceInput">
                             Google Drive / shared folder link
                         </label>
 
@@ -844,30 +902,33 @@ System ready.
                             id="driveSourceInput"
                             type="url"
                             placeholder="https://drive.google.com/drive/folders/..."
+                            aria-label="Google Drive folder link"
                         >
 
                     </div>
 
                     <div class="form-group">
 
-                        <label>Source / folder name</label>
+                        <label for="driveSourceName">Source / folder name</label>
 
                         <input
                             id="driveSourceName"
                             type="text"
                             placeholder="Project 2025 accounting"
+                            aria-label="Source folder name"
                         >
 
                     </div>
 
                     <button class="btn btn-primary"
-                            onclick="addDriveSource()">
+                            onclick="addDriveSource()"
+                            aria-label="Add Google Drive source">
                         ☁️ Add Source
                     </button>
 
                     <div style="height:8px"></div>
 
-                    <div class="alert alert-info">
+                    <div class="alert alert-info" role="note">
                         The standalone browser version stores the link and source metadata.
                         Actual private Google Drive enumeration requires Drive authentication/API
                         access, which will be implemented in the Python version.
@@ -879,12 +940,14 @@ System ready.
                 <div class="button-row">
 
                     <button class="btn btn-success"
-                            onclick="processAllDocuments()">
+                            onclick="processAllDocuments()"
+                            aria-label="Process all documents">
                         ▶ Process All
                     </button>
 
                     <button class="btn btn-outline"
-                            onclick="findMatches()">
+                            onclick="findMatches()"
+                            aria-label="Find matching documents">
                         🔗 Find Matches
                     </button>
 
@@ -913,6 +976,7 @@ System ready.
 
             <select id="typeFilter"
                     onchange="renderDocuments()"
+                    aria-label="Filter documents by type"
                     style="max-width:190px">
 
                 <option value="">All types</option>
@@ -928,25 +992,25 @@ System ready.
         </div>
 
 
-        <div class="table-wrap">
+        <div class="table-wrap" role="region" aria-label="Accounting documents table">
 
             <table>
 
                 <thead>
 
                     <tr>
-                        <th>Document</th>
-                        <th>Type</th>
-                        <th>Date</th>
-                        <th>Name</th>
-                        <th>Amount</th>
-                        <th>Currency</th>
-                        <th>Payment</th>
-                        <th>Reference</th>
-                        <th>Status</th>
-                        <th>Source</th>
-                        <th>Link</th>
-                        <th>Delete</th>
+                        <th scope="col">Document</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Currency</th>
+                        <th scope="col">Payment</th>
+                        <th scope="col">Reference</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Source</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Delete</th>
                     </tr>
 
                 </thead>
@@ -986,621 +1050,78 @@ System ready.
 
                 <div class="form-group">
 
-                    <label>Folder name</label>
+                    <label for="sourceName">Folder name</label>
 
                     <input
                         id="sourceName"
                         type="text"
                         placeholder="Project 2025"
+                        aria-label="Source folder name"
                     >
 
                 </div>
 
                 <div class="form-group">
 
-                    <label>Complete Google Drive folder link</label>
+                    <label for="sourceUrl">Folder URL</label>
 
                     <input
                         id="sourceUrl"
                         type="url"
                         placeholder="https://drive.google.com/drive/folders/..."
+                        aria-label="Google Drive folder URL"
                     >
 
                 </div>
 
                 <div class="form-group">
 
-                    <label>Purpose</label>
+                    <label for="sourceType">Source Type</label>
 
-                    <input
-                        id="sourcePurpose"
-                        type="text"
-                        placeholder="Receipts / contracts / project documents"
-                    >
+                    <select id="sourceType" aria-label="Select source type">
+                        <option value="drive">Google Drive</option>
+                        <option value="folder">Local Folder</option>
+                        <option value="cloud">Other Cloud Storage</option>
+                    </select>
 
                 </div>
 
                 <button class="btn btn-primary"
-                        onclick="addDriveSourceFromDocuments()">
-                    Add Drive Source
+                        onclick="addDocumentSource()"
+                        aria-label="Add document source">
+                    ➕ Add Source
                 </button>
 
             </div>
 
+            <div class="card" style="box-shadow:none;background:#f0fdf4">
 
-            <div class="card"
-                 style="box-shadow:none;background:#f8fafc">
+                <h3>📊 Quick Stats</h3>
 
-                <h3>Local Folder</h3>
-
-                <p style="font-size:11px;color:var(--muted)">
-                    Select an entire folder. Modern browsers expose the relative
-                    folder path through the selected files.
-                </p>
-
-                <button class="btn btn-primary"
-                        onclick="chooseFolder()">
-                    📁 Select Folder
-                </button>
+                <div class="kpi">
+                    <div class="kpi-label">Total Sources</div>
+                    <div class="kpi-value" id="sourcesCount" aria-live="polite">0</div>
+                </div>
 
                 <div style="height:10px"></div>
 
-                <button class="btn btn-outline"
-                        onclick="chooseFiles()">
-                    📄 Select Files
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div style="height:17px"></div>
-
-
-    <div class="card">
-
-        <h3>Registered Sources</h3>
-
-        <div id="sourcesList"></div>
-
-    </div>
-
-
-    <div style="height:17px"></div>
-
-
-    <div class="card">
-
-        <h3>Indexed Documents</h3>
-
-        <div id="repositoryList"></div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     EXPLORER
-========================================================= -->
-
-<section class="page" id="page-explorer">
-
-    <div class="card">
-
-        <h2>Document Explorer</h2>
-
-        <p style="font-size:12px;color:var(--muted)">
-            Search across uploaded documents and indexed source metadata.
-        </p>
-
-        <div class="search-box">
-
-            <span class="search-icon">🔎</span>
-
-            <input
-                id="explorerSearch"
-                type="text"
-                placeholder="Find contracts of 2024 and 2026"
-                onkeydown="
-                    if(event.key==='Enter')
-                    runExplorerSearch(this.value)
-                "
-            >
-
-        </div>
-
-        <div style="height:9px"></div>
-
-        <div class="button-row">
-
-            <button class="btn btn-primary"
-                    onclick="
-                    runExplorerSearch(
-                        document.getElementById('explorerSearch').value
-                    )">
-                Search
-            </button>
-
-            <button class="btn btn-outline"
-                    onclick="showAllDocuments()">
-                Show All
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div style="height:17px"></div>
-
-
-    <div class="card">
-
-        <div style="
-            display:flex;
-            justify-content:space-between;
-            align-items:center
-        ">
-
-            <h3>Search Results</h3>
-
-            <span id="resultCount"
-                  class="badge badge-gray">
-                0 results
-            </span>
-
-        </div>
-
-        <div class="result-list"
-             id="explorerResults"></div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     TINY AI
-========================================================= -->
-<section class="page" id="page-ai">
-    <div class="grid grid-2">
-        <div class="card">
-            <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
-                <div><h2 style="margin-bottom:4px">Tiny AI Assistant</h2><div class="ai-muted">Fast questions over your indexed documents, with optional external AI providers.</div></div>
-                <span class="ai-chip" id="aiStatusChip">Local search ready</span>
-            </div>
-            <div style="height:12px"></div>
-            <div class="form-group"><label>Question</label><textarea id="aiQuestion" placeholder="Ask: Which cataract project documents mention 300 operations?"></textarea></div>
-            <div class="ai-toolbar"><button class="btn btn-primary" onclick="tinyAsk()">✨ Ask AI</button><button class="btn btn-outline" onclick="tinySearchOnly()">🔎 Search documents</button><button class="btn btn-outline" onclick="useReportContextForAI()">📑 Use report context</button></div>
-            <div style="height:10px"></div><div class="ai-muted">Manual mode never sends anything to an API. Provider mode sends only the question and selected document context to the configured endpoint.</div>
-        </div>
-        <div class="card"><h3>AI response</h3><div id="aiResponse" class="source-box ai-answer">Ready. Configure a provider in Settings, or use document-only search.</div><div style="height:10px"></div><div class="ai-toolbar"><span class="badge badge-gray" id="aiSourceBadge">No sources</span><span class="badge badge-gray" id="aiModelBadge">Manual / local</span></div></div>
-    </div>
-    <div style="height:17px"></div>
-    <div class="card">
-        <div style="display:flex;justify-content:space-between;gap:10px;align-items:center">
-            <div>
-                <h3>⚡ Browser Hugging Face Engine</h3>
-                <div class="ai-muted">Runs compatible Hugging Face models directly in this PWA using Transformers.js + WebGPU/WASM. No Python server and no API key required.</div>
-            </div>
-            <span class="ai-chip" id="hfBrowserStatus">Engine idle</span>
-        </div>
-        <div style="height:12px"></div>
-        <div class="grid grid-2">
-            <div>
-                <div class="form-group">
-                    <label>Hugging Face / Transformers.js model</label>
-                    <input id="hfBrowserModel" value="onnx-community/Qwen3-0.6B-ONNX" placeholder="onnx-community/Qwen3-0.6B-ONNX">
-                </div>
-                <div class="form-group">
-                    <label>Device</label>
-                    <select id="hfBrowserDevice">
-                        <option value="webgpu">WebGPU — faster when supported</option>
-                        <option value="wasm">WASM / CPU — compatibility fallback</option>
-                    </select>
-                </div>
-            </div>
-            <div>
-                <div class="form-group">
-                    <label>Quantization</label>
-                    <select id="hfBrowserDtype">
-                        <option value="q4f16">q4f16 — small / fast</option>
-                        <option value="q4">q4</option>
-                        <option value="q8">q8</option>
-                        <option value="fp16">fp16</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Max new tokens</label>
-                    <input id="hfBrowserMaxTokens" type="number" min="16" max="4096" value="384">
-                </div>
-            </div>
-        </div>
-        <div class="button-row">
-            <button class="btn btn-primary" onclick="hfBrowserLoad()">⬇ Load model</button>
-            <button class="btn btn-outline" onclick="hfBrowserUnload()">♻ Unload</button>
-            <button class="btn btn-outline" onclick="hfBrowserUseQuestion()">↔ Use Tiny AI question</button>
-        </div>
-        <div style="height:10px"></div>
-        <div class="ai-muted" id="hfBrowserProgress">First load downloads the model files and then the browser caches them for later use.</div>
-        <div style="height:10px"></div>
-        <div class="form-group">
-            <label>Browser-local prompt</label>
-            <textarea id="hfBrowserPrompt" style="min-height:130px" placeholder="Ask the local model anything..."></textarea>
-        </div>
-        <div class="ai-toolbar">
-            <button class="btn btn-primary" onclick="hfBrowserAsk()">✨ Run local model</button>
-            <button class="btn btn-outline" onclick="hfBrowserUseContext()">📚 Add document context</button>
-        </div>
-        <div style="height:10px"></div>
-        <div id="hfBrowserResponse" class="source-box ai-answer">Load a compatible model, then enter a prompt.</div>
-        <div class="ai-muted" style="margin-top:8px">
-            Model IDs must be compatible with Transformers.js. The app also accepts other compatible Hugging Face/ONNX models by changing the model ID.
-        </div>
-    </div>
-
-    <div style="height:17px"></div>
-    <div class="card"><h3>Manual / Local Transformers</h3><div class="alert alert-info">A browser-only HTML file cannot execute Python <code>transformers</code> code directly. The snippets below are the local/manual path for Qwen; the API providers above are the quick path from the browser.</div>
-<pre style="background:#0b1120;color:#cbd5e1;border-radius:9px;padding:14px;overflow:auto;font-size:11px;line-height:1.55">from transformers import AutoTokenizer, AutoModelForCausalLM
-
-tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-0.6B")
-model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen3-0.6B", device_map="auto")
-messages = [
-    {"role": "user", "content": "Who are you?"},
-]
-inputs = tokenizer.apply_chat_template(
-    messages,
-    add_generation_prompt=True,
-    tokenize=True,
-    return_dict=True,
-    return_tensors="pt",
-).to(model.device)
-
-outputs = model.generate(**inputs, max_new_tokens=40)
-print(tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:]))
-
-# Alternative pipeline / GGUF path
-from transformers import pipeline
-
-pipe = pipeline("text-generation", model="Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF")
-messages = [
-    {"role": "user", "content": "Who are you?"},
-]
-print(pipe(messages))</pre><textarea id="aiManualPrompt" style="min-height:190px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div>
-</section>
-
-<!-- =========================================================
-     MATCHING
-========================================================= -->
-
-<section class="page" id="page-matches">
-
-    <div class="card">
-
-        <h2>Matching Queue</h2>
-
-        <div class="alert alert-warning">
-            Similar receipts are not automatically merged merely because they
-            have the same amount. Name, amount, date, reference and textual evidence
-            are evaluated together.
-        </div>
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>Décharge</th>
-                        <th>Candidate</th>
-                        <th>Name</th>
-                        <th>Amount</th>
-                        <th>Currency</th>
-                        <th>Evidence</th>
-                        <th>Confidence</th>
-                        <th>Action</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="matchesTable"></tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     REPORTS
-========================================================= -->
-
-<section class="page" id="page-reports">
-
-    <div class="card">
-
-        <h2>Project Reports</h2>
-
-        <p style="font-size:12px;color:var(--muted)">
-            Create a research/accounting report for a project or period.
-            The report searches indexed documents, receipts, contracts,
-            décharges and project evidence.
-        </p>
-
-
-        <div class="grid grid-2">
-
-            <div>
-
-                <div class="form-group">
-
-                    <label>Report title</label>
-
-                    <input
-                        id="reportTitle"
-                        type="text"
-                        placeholder="Project 2025 supporting report"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Project / subject</label>
-
-                    <input
-                        id="reportProject"
-                        type="text"
-                        placeholder="Project name"
-                    >
-
-                </div>
-
-
-                <div class="grid grid-2">
-
-                    <div class="form-group">
-
-                        <label>From date</label>
-
-                        <input
-                            id="reportFrom"
-                            type="date"
-                        >
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>To date</label>
-
-                        <input
-                            id="reportTo"
-                            type="date"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Project year</label>
-
-                    <select id="reportYear">
-
-                        <option value="">Any year</option>
-                        <option>2026</option>
-                        <option>2025</option>
-                        <option>2024</option>
-                        <option>2023</option>
-                        <option>2022</option>
-                        <option>2021</option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Currency</label>
-
-                    <select id="reportCurrency">
-
-                        <option value="XOF">XOF — West African CFA franc</option>
-                        <option value="XAF">XAF — Central African CFA franc</option>
-                        <option value="EUR">EUR — Euro</option>
-                        <option value="USD">USD — US Dollar</option>
-                        <option value="GBP">GBP — Pound Sterling</option>
-                        <option value="CAD">CAD — Canadian Dollar</option>
-                        <option value="CHF">CHF — Swiss Franc</option>
-                        <option value="AED">AED — UAE Dirham</option>
-                        <option value="MAD">MAD — Moroccan Dirham</option>
-                        <option value="NGN">NGN — Nigerian Naira</option>
-                        <option value="GHS">GHS — Ghanaian Cedi</option>
-                        <option value="GMD">GMD — Gambian Dalasi</option>
-                        <option value="GNF">GNF — Guinean Franc</option>
-                        <option value="MRU">MRU — Mauritanian Ouguiya</option>
-                        <option value="SLL">SLL — Sierra Leonean Leone</option>
-                        <option value="LRD">LRD — Liberian Dollar</option>
-                        <option value="Other">Other</option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Additional search instructions</label>
-
-                    <textarea
-                        id="reportQuery"
-                        placeholder="Find receipts, contracts, décharges and documents related to the project..."
-                    ></textarea>
-
-                </div>
-
-
-                <button class="btn btn-primary"
-                        onclick="createReport()">
-                    📑 Create Report
-                </button>
-
-            </div>
-
-
-            <div>
-
-                <div class="alert alert-info">
-
-                    <strong>Example</strong>
-
-                    <br><br>
-
-                    Project year:
-                    <strong>2025</strong>
-
-                    <br>
-
-                    Currency:
-                    <strong>XOF</strong>
-
-                    <br><br>
-
-                    The assistant searches available sources for project
-                    documents and identifies supporting accounting records.
-
-                </div>
-
-                <div class="card"
-                     style="box-shadow:none;background:#f8fafc">
-
-                    <h3>Report process</h3>
-
-                    <ol style="
-                        font-size:11px;
-                        line-height:2;
-                        color:#475569;
-                    ">
-
-                        <li>Search project/source metadata</li>
-                        <li>Search OCR text</li>
-                        <li>Identify contracts and project documents</li>
-                        <li>Identify receipts and invoices</li>
-                        <li>Identify décharges</li>
-                        <li>Match supporting accounting documents</li>
-                        <li>Remove duplicate document context</li>
-                        <li>Calculate totals by currency</li>
-                        <li>Generate report</li>
-
-                    </ol>
-
+                <div class="alert alert-success" role="note">
+                    ✓ All sources are active and synchronized.
                 </div>
 
             </div>
 
         </div>
 
-    </div>
-
-
-    <div style="height:17px"></div>
-
-
-    <div class="card">
-
-        <h3>Generated Reports</h3>
-
-        <div id="reportsList"></div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     OUTPUT
-========================================================= -->
-
-<section class="page" id="page-output">
-
-    <div class="grid grid-2">
+        <div style="height:17px"></div>
 
         <div class="card">
 
-            <h2>Accounting Spreadsheet</h2>
+            <h3>Your Sources</h3>
 
-            <p style="font-size:12px;color:var(--muted)">
-                Export confirmed accounting groups to Excel.
-            </p>
-
-            <button class="btn btn-success"
-                    onclick="generateWorkbook()">
-                📊 Generate worksheetsept26.xlsx
-            </button>
-
-        </div>
-
-
-        <div class="card">
-
-            <h2>Merged Documents</h2>
-
-            <p style="font-size:12px;color:var(--muted)">
-                Merge only confirmed corresponding documents.
-            </p>
-
-            <button class="btn btn-primary"
-                    onclick="mergeConfirmedGroups()">
-                📄 Generate Merged PDFs
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <div style="height:17px"></div>
-
-
-    <div class="card">
-
-        <h3>Accounting Output</h3>
-
-        <div class="table-wrap">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-                        <th>Date</th>
-                        <th>Name</th>
-                        <th>Amount</th>
-                        <th>Currency</th>
-                        <th>Payment</th>
-                        <th>Reference</th>
-                        <th>Detail</th>
-                        <th>Documents</th>
-                    </tr>
-
-                </thead>
-
-                <tbody id="accountingOutputTable"></tbody>
-
-            </table>
+            <div id="sourcesList" class="file-list">
+                <div class="empty">No sources added yet. Create your first source above!</div>
+            </div>
 
         </div>
 
@@ -1610,5120 +1131,209 @@ print(pipe(messages))</pre><textarea id="aiManualPrompt" style="min-height:190px
 
 
 <!-- =========================================================
-     SETTINGS
+     SYSTEM INFO & FOOTER
 ========================================================= -->
 
-<section class="page" id="page-settings">
+<div style="height:30px"></div>
 
-    <div class="card">
-
-        <h2>Settings</h2>
-
-        <div class="grid grid-2">
-
-            <div>
-
-                <div class="form-group">
-
-                    <label>Accounting workbook</label>
-
-                    <input
-                        id="settingWorkbook"
-                        value="worksheetsept26.xlsx"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Automatic matching threshold (%)</label>
-
-                    <input
-                        id="settingAutoThreshold"
-                        type="number"
-                        min="50"
-                        max="100"
-                        value="90"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Review threshold (%)</label>
-
-                    <input
-                        id="settingReviewThreshold"
-                        type="number"
-                        min="0"
-                        max="100"
-                        value="75"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Default currency</label>
-
-                    <select id="settingCurrency">
-
-                        <option value="XOF">XOF — West African CFA franc</option>
-                        <option value="XAF">XAF — Central African CFA franc</option>
-                        <option value="EUR">EUR — Euro</option>
-                        <option value="USD">USD — US Dollar</option>
-                        <option value="GBP">GBP — Pound Sterling</option>
-                        <option value="CAD">CAD — Canadian Dollar</option>
-                        <option value="CHF">CHF — Swiss Franc</option>
-                        <option value="AED">AED — UAE Dirham</option>
-                        <option value="MAD">MAD — Moroccan Dirham</option>
-                        <option value="NGN">NGN — Nigerian Naira</option>
-                        <option value="GHS">GHS — Ghanaian Cedi</option>
-                        <option value="GMD">GMD — Gambian Dalasi</option>
-                        <option value="GNF">GNF — Guinean Franc</option>
-                        <option value="MRU">MRU — Mauritanian Ouguiya</option>
-                        <option value="SLL">SLL — Sierra Leonean Leone</option>
-                        <option value="LRD">LRD — Liberian Dollar</option>
-                        <option value="Other">Other</option>
-
-                    </select>
-
-                </div>
-
-
-                <button class="btn btn-primary"
-                        onclick="saveSettings()">
-                    Save Settings
-                </button>
-
-            </div>
-
-
-            <div>
-
-                <div class="alert alert-info">
-
-                    <strong>Matching policy</strong>
-
-                    <br><br>
-
-                    90–100% → automatic match
-
-                    <br>
-
-                    75–89% → human review
-
-                    <br>
-
-                    Below 75% → unresolved
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div style="height:17px"></div>
-
-    <div class="card">
-        <h3>AI Providers & API Keys</h3>
-        <div class="alert alert-warning">
-            API keys are stored locally in this browser when you save them. For a production/shared deployment, prefer a small backend proxy so keys are not exposed to the browser.
-        </div>
-        <div class="grid grid-2">
-            <div>
-                <div class="form-group">
-                    <label>Provider</label>
-                    <select id="settingAIProvider" onchange="renderAIProviderHelp()">
-                        <option value="openai">OpenAI</option>
-                        <option value="openai-compatible">OpenAI-compatible</option>
-                        <option value="anthropic">Anthropic</option>
-                        <option value="gemini">Google Gemini</option>
-                        <option value="huggingface">Hugging Face Inference Providers</option>
-                        <option value="hf-browser">Hugging Face Browser / Transformers.js</option>
-                        <option value="ollama">Ollama / local server</option>
-                        <option value="manual">Manual / Transformers Python</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Model</label>
-                    <input id="settingAIModel" type="text" placeholder="gpt-5-mini / gemini-2.5-flash / Qwen/Qwen3-0.6B">
-                </div>
-                <div class="form-group">
-                    <label>API key</label>
-                    <input id="settingAIKey" class="ai-key" type="password" autocomplete="off" placeholder="Paste key here">
-                </div>
-                <div class="form-group">
-                    <label>Custom endpoint (optional)</label>
-                    <input id="settingAIEndpoint" type="url" placeholder="https://...">
-                </div>
-            </div>
-            <div>
-                <div class="form-group">
-                    <label>Temperature</label>
-                    <input id="settingAITemperature" type="number" min="0" max="2" step="0.1" value="0.2">
-                </div>
-                <div class="form-group">
-                    <label>Max output tokens</label>
-                    <input id="settingAIMaxTokens" type="number" min="16" max="32768" value="1200">
-                </div>
-                <div class="form-group">
-                    <label>System prompt</label>
-                    <textarea id="settingAISystemPrompt" style="min-height:110px">You are a concise research assistant. Use the supplied document context when present. Do not invent facts. State when evidence is missing.</textarea>
-                </div>
-                <div id="aiProviderHelp" class="alert alert-info"></div>
-            </div>
-        </div>
-        <div class="button-row">
-            <button class="btn btn-primary" onclick="saveAISettings()">Save AI Settings</button>
-            <button class="btn btn-outline" onclick="testAIProvider()">Test Provider</button>
-            <button class="btn btn-outline" onclick="clearAIKey()">Clear Key</button>
-        </div>
-    </div>
-
-    <div style="height:17px"></div>
-
-    <div class="card">
-
-        <h3>Data Management</h3>
-
-        <div class="button-row">
-
-            <button class="btn btn-outline"
-                    onclick="backupWorkspace()">
-                Export Workspace
-            </button>
-
-            <button class="btn btn-outline"
-                    onclick="document.getElementById('restoreInput').click()">
-                Restore Workspace
-            </button>
-
-            <button class="btn btn-danger"
-                    onclick="clearWorkspace(true)">
-                Delete Workspace
-            </button>
-
-        </div>
-
-    </div>
+<footer style="
+    text-align:center;
+    color:var(--muted);
+    font-size:10px;
+    padding:20px;
+    border-top:1px solid var(--border);
+    margin-top:20px
+">
+    <p>
+        Accountant Assistant v2.0 · 
+        <a href="#" style="color:var(--primary);text-decoration:none">Documentation</a> · 
+        <a href="#" style="color:var(--primary);text-decoration:none">Report Issue</a> · 
+        <a href="#" style="color:var(--primary);text-decoration:none">GitHub</a>
+    </p>
+    <p style="margin:0;color:#94a3b8">
+        Built with accessibility and performance in mind. HTML5 • WCAG 2.1 AA • Local-first architecture
+    </p>
+</footer>
 
 </section>
 
-</section>
 </main>
+
 </div>
 
 
-<!-- FILE INPUT -->
-<input
-    id="fileInput"
-    class="file-input"
-    type="file"
-    multiple
-    accept="image/*,.pdf,.txt"
->
+<input type="file" id="fileInput" class="file-input" multiple>
+<input type="file" id="folderInput" class="file-input" webkitdirectory directory>
+<input type="file" id="cameraInput" class="file-input" accept="image/*">
 
-<!-- FOLDER INPUT -->
-<input
-    id="folderInput"
-    class="file-input"
-    type="file"
-    webkitdirectory
-    directory
-    multiple
->
-
-<!-- RESTORE -->
-<input
-    id="restoreInput"
-    class="file-input"
-    type="file"
-    accept=".json"
->
-
-
-<!-- CAMERA -->
 <div class="camera-modal" id="cameraModal">
-
     <div class="modal-panel">
-
         <div class="close-row">
-
-            <h3 style="margin:0">
-                Scan Document
-            </h3>
-
-            <button class="btn btn-outline"
-                    onclick="closeCamera()">
-                ✕
-            </button>
-
+            <h3>Camera Capture</h3>
+            <button style="border:0;background:none;font-size:20px;cursor:pointer" 
+                    onclick="closeCamera()" 
+                    aria-label="Close camera">✕</button>
         </div>
-
-        <video
-            id="cameraVideo"
-            class="camera-video"
-            autoplay
-            playsinline>
-        </video>
-
-        <canvas
-            id="cameraCanvas"
-            style="display:none">
-        </canvas>
-
+        <video id="cameraVideo" class="camera-video" playsinline></video>
         <div style="height:12px"></div>
-
         <div class="button-row">
-
-            <button class="btn btn-primary"
-                    onclick="capturePhoto()">
+            <button class="btn btn-success" onclick="capturePhoto()" aria-label="Capture photo">
                 📸 Capture
             </button>
-
-            <button class="btn btn-outline"
-                    onclick="switchCamera()">
-                🔄 Switch
-            </button>
-
-            <button class="btn btn-outline"
-                    onclick="closeCamera()">
+            <button class="btn btn-outline" onclick="closeCamera()" aria-label="Close camera">
                 Cancel
             </button>
-
         </div>
-
     </div>
-
 </div>
-
-
-<!-- DOCUMENT MODAL -->
-<div class="modal" id="documentModal">
-
-    <div class="modal-panel">
-
-        <div class="close-row">
-
-            <h3 id="modalTitle">Document</h3>
-
-            <button class="btn btn-outline"
-                    onclick="closeDocumentModal()">
-                ✕
-            </button>
-
-        </div>
-
-        <div id="documentModalBody"></div>
-
-    </div>
-
-</div>
-
 
 <script>
-"use strict";
-
-/* ============================================================
-   APPLICATION STATE
-============================================================ */
-
-const APP = {
-
-    version:"2.2.0",
-
-    storageKey:"accountant_assistant_v2",
-
-    documents:[],
-
-    sources:[],
-
-    matches:[],
-
-    reports:[],
-
-    settings:{
-        workbook:"worksheetsept26.xlsx",
-        autoThreshold:90,
-        reviewThreshold:75,
-        defaultCurrency:"XOF",
-        ai:{
-            provider:"openai",
-            model:"gpt-5-mini",
-            apiKey:"",
-            endpoint:"",
-            temperature:0.2,
-            maxTokens:1200,
-            systemPrompt:"You are a concise research assistant. Use the supplied document context when present. Do not invent facts. State when evidence is missing."
-        }
-    },
-
-    cameraStream:null,
-
-    cameraFacing:"environment",
-
-    worker:null,
-
-    processing:false
-
-};
-
-
-/* ============================================================
-   BASIC UTILITIES
-============================================================ */
-
-function uid(prefix="ID"){
-    return prefix+"-"+Date.now().toString(36)+"-"+
-        Math.random().toString(36).slice(2,8).toUpperCase();
-}
-
-function escapeHTML(value){
-    return String(value??"")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-}
-
-function normalizeText(value){
-    return String(value||"")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g,"")
-        .toLowerCase()
-        .replace(/\s+/g," ")
-        .trim();
-}
-
-function stripExtension(name){
-    return String(name).replace(/\.[^.]+$/,"");
-}
-
-function formatMoney(value){
-
-    if(
-        value===null ||
-        value===undefined ||
-        value==="" ||
-        !Number.isFinite(Number(value))
-    ){
-        return "";
-    }
-
-    return new Intl.NumberFormat("fr-FR",{
-        maximumFractionDigits:2
-    }).format(Number(value));
-}
-
-function downloadBlob(blob,filename){
-
-    const url=URL.createObjectURL(blob);
-
-    const a=document.createElement("a");
-
-    a.href=url;
-    a.download=filename;
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-    setTimeout(
-        ()=>URL.revokeObjectURL(url),
-        1000
-    );
-}
-
-function log(message){
-
-    const el=document.getElementById("dashboardLog");
-
-    const line=
-        `[${new Date().toLocaleTimeString()}] ${message}`;
-
-    if(el){
-
-        el.textContent +=
-            (el.textContent?"\n":"")+
-            line;
-
-        el.scrollTop=el.scrollHeight;
-    }
-
-    console.log(line);
-}
-
-function setProgress(percent,label){
-
-    const bar=
-        document.getElementById("globalProgress");
-
-    if(bar){
-        bar.style.width=
-            Math.max(0,Math.min(100,percent))+"%";
-    }
-
-    const status=
-        document.getElementById("processingLabel");
-
-    if(status){
-        status.textContent=
-            label || `${Math.round(percent)}%`;
-    }
-}
-
-
-/* ============================================================
-   PERSISTENCE
-============================================================ */
-
-function saveState(){
-
-    const documents=
-        APP.documents.map(doc=>{
-
-            const clone={...doc};
-
-            delete clone.file;
-
-            return clone;
-        });
-
-    localStorage.setItem(
-        APP.storageKey,
-        JSON.stringify({
-            version:APP.version,
-            documents,
-            sources:APP.sources,
-            matches:APP.matches,
-            reports:APP.reports,
-            settings:{...APP.settings,ai:{...APP.settings.ai,apiKey:""}}
-        })
-    );
-    try{ sessionStorage.setItem(APP.storageKey+"_ai_key", APP.settings.ai.apiKey||""); }catch(e){}
-}
-
-function loadState(){
-
-    try{
-
-        const raw=
-            localStorage.getItem(APP.storageKey);
-
-        if(!raw)return;
-
-        const data=JSON.parse(raw);
-
-        APP.documents=
-            Array.isArray(data.documents)
-            ?data.documents:[];
-
-        APP.sources=
-            Array.isArray(data.sources)
-            ?data.sources:[];
-
-        APP.matches=
-            Array.isArray(data.matches)
-            ?data.matches:[];
-
-        APP.reports=
-            Array.isArray(data.reports)
-            ?data.reports:[];
-
-        APP.settings=
-            Object.assign(
-                APP.settings,
-                data.settings||{}
-            );
-        APP.settings.ai=Object.assign({},APP.settings.ai,data.settings?.ai||{});
-        try{ APP.settings.ai.apiKey=sessionStorage.getItem(APP.storageKey+"_ai_key")||APP.settings.ai.apiKey||""; }catch(e){}
-
-    }catch(error){
-
-        console.error(error);
-    }
-}
-
-
-/* ============================================================
-   NAVIGATION
-============================================================ */
-
-const PAGE_TITLES={
-    dashboard:"Dashboard",
-    accounting:"Accountancy",
-    documents:"Documents & Sources",
-    explorer:"Document Explorer",
-    ai:"Tiny AI",
-    matches:"Matching Queue",
-    reports:"Project Reports",
-    output:"Outputs",
-    settings:"Settings"
-};
-
-function navigate(page){
-
-    document.querySelectorAll(".page")
-        .forEach(el=>el.classList.remove("active"));
-
-    const target=
-        document.getElementById("page-"+page);
-
-    if(target){
-        target.classList.add("active");
-    }
-
-    document.querySelectorAll(".nav-button")
-        .forEach(button=>{
-            button.classList.toggle(
-                "active",
-                button.dataset.page===page
-            );
-        });
-
-    document.getElementById("pageTitle").textContent=
-        PAGE_TITLES[page]||page;
-
-    document.getElementById("sidebar")
-        .classList.remove("open");
-
-    refreshUI();
-}
-
-
-/* ============================================================
-   FILE / FOLDER SELECTION
-============================================================ */
-
-function chooseFiles(){
-    document.getElementById("fileInput").click();
-}
-
-function chooseFolder(){
-    document.getElementById("folderInput").click();
-}
-
-document.getElementById("fileInput")
-.addEventListener("change",async event=>{
-
-    const files=
-        Array.from(event.target.files||[]);
-
-    if(files.length){
-
-        await ingestFiles(
-            files,
-            "file-upload"
-        );
-    }
-
-    event.target.value="";
-});
-
-document.getElementById("folderInput")
-.addEventListener("change",async event=>{
-
-    const files=
-        Array.from(event.target.files||[]);
-
-    if(files.length){
-
-        await ingestFiles(
-            files,
-            "folder-upload"
-        );
-    }
-
-    event.target.value="";
-});
-
-
-/* ============================================================
-   DRAG / DROP
-============================================================ */
-
-const dropzone=
-    document.getElementById("dropzone");
-
-["dragenter","dragover"].forEach(eventName=>{
-
-    dropzone.addEventListener(
-        eventName,
-        event=>{
-            event.preventDefault();
-            dropzone.classList.add("dragover");
-        }
-    );
-});
-
-["dragleave","drop"].forEach(eventName=>{
-
-    dropzone.addEventListener(
-        eventName,
-        event=>{
-            event.preventDefault();
-            dropzone.classList.remove("dragover");
-        }
-    );
-});
-
-dropzone.addEventListener("drop",async event=>{
-
-    const files=
-        Array.from(event.dataTransfer.files||[]);
-
-    if(files.length){
-
-        await ingestFiles(
-            files,
-            "drag-drop"
-        );
-    }
-});
-
-
-/* ============================================================
-   SOURCE MANAGEMENT
-============================================================ */
-
-function addDriveSource(){
-
-    const url=
-        document.getElementById("driveSourceInput").value.trim();
-
-    const name=
-        document.getElementById("driveSourceName").value.trim()
-        ||"Google Drive folder";
-
-    if(!url){
-
-        alert("Enter a Google Drive folder link.");
-
-        return;
-    }
-
-    APP.sources.push({
-
-        id:uid("SRC"),
-
-        name,
-
-        url,
-
-        type:"google-drive",
-
-        purpose:"Accounting source",
-
-        createdAt:new Date().toISOString(),
-
-        status:"link-only"
-
-    });
-
-    document.getElementById("driveSourceInput").value="";
-    document.getElementById("driveSourceName").value="";
-
-    saveState();
-
-    refreshUI();
-
-    log(`Google Drive source added: ${name}`);
-}
-
-function addDriveSourceFromDocuments(){
-
-    const name=
-        document.getElementById("sourceName").value.trim()
-        ||"Google Drive folder";
-
-    const url=
-        document.getElementById("sourceUrl").value.trim();
-
-    const purpose=
-        document.getElementById("sourcePurpose").value.trim();
-
-    if(!url){
-
-        alert("Enter a complete folder URL.");
-
-        return;
-    }
-
-    APP.sources.push({
-
-        id:uid("SRC"),
-
-        name,
-
-        url,
-
-        purpose,
-
-        type:"google-drive",
-
-        createdAt:new Date().toISOString(),
-
-        status:"link-only"
-
-    });
-
-    document.getElementById("sourceName").value="";
-    document.getElementById("sourceUrl").value="";
-    document.getElementById("sourcePurpose").value="";
-
-    saveState();
-
-    refreshUI();
-
-    log(`Source added: ${name}`);
-}
-
-function deleteSource(id){
-
-    if(!confirm("Delete this source reference?")){
-        return;
-    }
-
-    APP.sources=
-        APP.sources.filter(
-            source=>source.id!==id
-        );
-
-    saveState();
-
-    refreshUI();
-}
-
-function renderSources(){
-
-    const container=
-        document.getElementById("sourcesList");
-
-    if(!container)return;
-
-    if(!APP.sources.length){
-
-        container.innerHTML=`
-            <div class="empty">
-                No external or folder sources registered.
-            </div>
-        `;
-
-        return;
-    }
-
-    container.innerHTML=
-        APP.sources.map(source=>`
-
-            <div class="source-box">
-
-                <div style="
-                    display:flex;
-                    justify-content:space-between;
-                    gap:10px;
-                ">
-
-                    <div>
-
-                        <strong style="font-size:12px">
-                            ${escapeHTML(source.name)}
-                        </strong>
-
-                        <div style="
-                            color:#64748b;
-                            font-size:10px;
-                            margin-top:3px;
-                        ">
-                            ${escapeHTML(source.purpose||"")}
-                        </div>
-
-                    </div>
-
-                    <span class="badge badge-blue">
-                        ${escapeHTML(source.type)}
-                    </span>
-
-                </div>
-
-                <div style="
-                    margin-top:8px;
-                    font-size:10px;
-                    word-break:break-all;
-                ">
-
-                    <a
-                        href="${escapeHTML(source.url)}"
-                        target="_blank"
-                        rel="noopener">
-                        ${escapeHTML(source.url)}
-                    </a>
-
-                </div>
-
-                <div style="margin-top:9px">
-
-                    <button
-                        class="btn btn-danger"
-                        onclick="deleteSource('${source.id}')">
-                        Delete
-                    </button>
-
-                </div>
-
-            </div>
-
-        `).join("");
-}
-
-
-/* ============================================================
-   DUPLICATE DETECTION
-============================================================ */
-
-function normalizeFilename(filename){
-
-    return normalizeText(
-        String(filename)
-            .replace(/\.[^.]+$/,"")
-            .replace(/[_-]+/g," ")
-    );
-}
-
-function documentFingerprint(file){
-
-    return [
-        file.name,
-        file.size,
-        file.lastModified,
-        file.webkitRelativePath||""
-    ].join("|");
-}
-
-function detectDuplicate(file){
-
-    const fingerprint=
-        documentFingerprint(file);
-
-    const exact=
-        APP.documents.find(
-            doc=>doc.fingerprint===fingerprint
-        );
-
-    if(exact){
-        return {
-            duplicate:true,
-            existing:exact,
-            reason:"Exact file fingerprint"
-        };
-    }
-
-    const sameName=
-        APP.documents.filter(
-            doc=>
-                normalizeFilename(doc.filename)===
-                normalizeFilename(file.name)
-        );
-
-    if(sameName.length){
-
-        const sameSize=
-            sameName.find(
-                doc=>doc.size===file.size
-            );
-
-        if(sameSize){
-
-            return {
-                duplicate:true,
-                existing:sameSize,
-                reason:"Same normalized filename and size"
-            };
-        }
-    }
-
-    return {
-        duplicate:false
-    };
-}
-
-
-/* ============================================================
-   INGESTION
-============================================================ */
-
-async function ingestFiles(files,sourceType){
-
-    if(!files.length)return;
-
-    navigate("accounting");
-
-    /*
-     * Filter obvious unsupported directory/system entries.
-     */
-    files=
-        files.filter(
-            file=>
-                file.size>=0 &&
-                !file.name.startsWith(".")
-        );
-
-    log(
-        `Received ${files.length} file(s) from ${sourceType}.`
-    );
-
-    let added=0;
-    let duplicates=0;
-
-    for(let i=0;i<files.length;i++){
-
-        const file=files[i];
-
-        setProgress(
-            i/files.length*100,
-            `Importing ${i+1}/${files.length}`
-        );
-
-        const duplicate=
-            detectDuplicate(file);
-
-        if(duplicate.duplicate){
-
-            duplicates++;
-
-            log(
-                `Duplicate skipped: ${file.name} (${duplicate.reason})`
-            );
-
-            continue;
-        }
-
-        const relativePath=
-            file.webkitRelativePath||
-            file.name;
-
-        /*
-         * Try to identify folder name from relative path.
-         */
-        const pathParts=
-            relativePath.split("/");
-
-        const sourceFolder=
-            pathParts.length>1
-            ?pathParts[0]
-            :"";
-
-        const doc={
-
-            id:uid("DOC"),
-
-            filename:file.name,
-
-            relativePath,
-
-            folder:sourceFolder,
-
-            fingerprint:documentFingerprint(file),
-
-            size:file.size,
-
-            mime:file.type||"",
-
-            createdAt:new Date().toISOString(),
-
-            source:sourceType,
-
-            type:"unknown",
-
-            status:"uploaded",
-
-            date:"",
-
-            name:"",
-
-            amount:null,
-
-            currency:
-                APP.settings.defaultCurrency,
-
-            paymentMethod:"",
-
-            reference:"",
-
-            detail:"",
-
-            year:"",
-
-            ocrText:"",
-
-            confidence:0,
-
-            relatedTo:[],
-
-            externalLink:"",
-
-            file
-
-        };
-
-        APP.documents.push(doc);
-
-        added++;
-
-        renderDocuments();
-
-        await processDocument(doc);
-    }
-
-    saveState();
-
-    setProgress(100,"Import complete");
-
-    log(
-        `Import complete: ${added} added, ${duplicates} duplicate(s) skipped.`
-    );
-
-    refreshUI();
-}
-
-
-/* ============================================================
-   OCR
-============================================================ */
-
-async function getOCRWorker(){
-
-    if(APP.worker)return APP.worker;
-
-    log("Initializing OCR engine...");
-
-    APP.worker=
-        await Tesseract.createWorker(
-            "fra+eng",
-            1,
-            {
-                logger:message=>{
-
-                    if(
-                        message.status==="recognizing text"
-                    ){
-
-                        setProgress(
-                            Number(message.progress||0)*100,
-                            "OCR"
-                        );
-                    }
-                }
-            }
-        );
-
-    return APP.worker;
-}
-
-async function performOCR(file){
-
-    if(file.type==="application/pdf"){
-
-        try{
-
-            const bytes=
-                await file.arrayBuffer();
-
-            const pdf=
-                await PDFLib.PDFDocument.load(
-                    bytes
-                );
-
-            return `
-PDF document.
-Pages: ${pdf.getPageCount()}
-Filename: ${file.name}
-            `.trim();
-
-        }catch(error){
-
-            return "";
-        }
-    }
-
-    if(
-        file.type.startsWith("image/")||
-        /\.(jpg|jpeg|png|webp|bmp|tiff?)$/i.test(file.name)
-    ){
-
-        const worker=
-            await getOCRWorker();
-
-        const result=
-            await worker.recognize(file);
-
-        return result.data.text||"";
-    }
-
-    if(
-        file.type==="text/plain"||
-        /\.txt$/i.test(file.name)
-    ){
-
-        return await file.text();
-    }
-
-    return "";
-}
-
-
-/* ============================================================
-   CLASSIFICATION
-============================================================ */
-
-function classifyDocument(text,filename){
-
-    const normalized=
-        normalizeText(
-            `${filename}\n${text}`
-        );
-
-    const rules=[
-
-        {
-            type:"decharge",
-            patterns:[
-                "je soussigne",
-                "je soussigne(e)",
-                "soussigné",
-                "soussignee",
-                "décharge",
-                "decharge",
-                "reçu la somme",
-                "recu la somme",
-                "avoir reçu"
-            ]
-        },
-
-        {
-            type:"receipt",
-            patterns:[
-                "reçu",
-                "recu",
-                "ticket",
-                "receipt",
-                "montant ttc"
-            ]
-        },
-
-        {
-            type:"invoice",
-            patterns:[
-                "facture",
-                "invoice",
-                "total ht",
-                "total ttc",
-                "tva"
-            ]
-        },
-
-        {
-            type:"payment_proof",
-            patterns:[
-                "virement",
-                "transaction",
-                "paiement",
-                "payment",
-                "orange money",
-                "wave",
-                "mobile money"
-            ]
-        },
-
-        {
-            type:"contract",
-            patterns:[
-                "contrat",
-                "contract",
-                "entre les soussign",
-                "article 1",
-                "clause"
-            ]
-        }
-
-    ];
-
-    for(const rule of rules){
-
-        const matches=
-            rule.patterns.filter(
-                p=>normalized.includes(
-                    normalizeText(p)
-                )
-            );
-
-        if(matches.length){
-
-            return {
-                type:rule.type,
-                confidence:
-                    Math.min(
-                        .99,
-                        .65+matches.length*.08
-                    )
-            };
-        }
-    }
-
-    return {
-        type:"other",
-        confidence:.35
-    };
-}
-
-
-/* ============================================================
-   EXTRACTION
-============================================================ */
-
-function extractDate(text){
-
-    const patterns=[
-        /\b(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})\b/g,
-        /\b(\d{4}[\/\-]\d{1,2}[\/\-]\d{1,2})\b/g
-    ];
-
-    for(const regex of patterns){
-
-        const match=regex.exec(text);
-
-        if(match){
-            return normalizeDate(match[1]);
-        }
-    }
-
-    return "";
-}
-
-function normalizeDate(value){
-
-    if(!value)return "";
-
-    const parts=
-        value.includes("/")
-        ?value.split("/")
-        :value.split("-");
-
-    if(parts.length!==3)return value;
-
-    if(parts[0].length===4){
-
-        return `${parts[0]}-${parts[1].padStart(2,"0")}-${parts[2].padStart(2,"0")}`;
-    }
-
-    let year=parts[2];
-
-    if(year.length===2){
-
-        year=
-            Number(year)>=70
-            ?"19"+year
-            :"20"+year;
-    }
-
-    return `${year}-${parts[1].padStart(2,"0")}-${parts[0].padStart(2,"0")}`;
-}
-
-function extractAmount(text){
-
-    const patterns=[
-
-        /(?:montant|somme|total|net\s*[àa]\s*payer|amount|prix)[^\d]{0,30}([\d\s.,]+)\s*(?:fcfa|f\s*cfa|xaf|francs?)?/i,
-
-        /([\d\s.,]+)\s*(?:fcfa|f\s*cfa|xaf)/i
-
-    ];
-
-    for(const regex of patterns){
-
-        const match=regex.exec(text);
-
-        if(!match)continue;
-
-        let raw=
-            match[1]
-                .replace(/\s/g,"")
-                .trim();
-
-        if(
-            raw.includes(",")&&
-            raw.includes(".")
-        ){
-
-            if(
-                raw.lastIndexOf(",")>
-                raw.lastIndexOf(".")
-            ){
-
-                raw=
-                    raw.replace(/\./g,"")
-                        .replace(",",".");
-            }else{
-
-                raw=
-                    raw.replace(/,/g,"");
-            }
-
-        }else if(raw.includes(",")){
-
-            const pieces=raw.split(",");
-
-            if(
-                pieces.length===2&&
-                pieces[1].length<=2
-            ){
-
-                raw=
-                    raw.replace(",",".");
-            }else{
-
-                raw=
-                    raw.replace(/,/g,"");
-            }
-
-        }else if(raw.includes(".")){
-
-            const pieces=raw.split(".");
-
-            if(
-                pieces.length>2||
-                (
-                    pieces.length===2&&
-                    pieces[1].length===3
-                )
-            ){
-
-                raw=
-                    raw.replace(/\./g,"");
-            }
-        }
-
-        const number=Number(raw);
-
-        if(
-            Number.isFinite(number)&&
-            number>0
-        ){
-
-            return number;
-        }
-    }
-
-    return null;
-}
-
-function extractReference(text){
-
-    const patterns=[
-
-        /(?:référence|reference|ref\.?|n[°ºo]?|numero|numéro)[\s:#-]*([A-Z0-9][A-Z0-9\/._-]{2,})/i,
-
-        /\b(?:D|DECH|DC|REC|FACT|INV|CT)[-\/]?[0-9]{2,}\b/i
-
-    ];
-
-    for(const regex of patterns){
-
-        const match=regex.exec(text);
-
-        if(match){
-            return match[1]||match[0];
-        }
-    }
-
-    return "";
-}
-
-function cleanupName(name){
-
-    return String(name)
-        .replace(
-            /\b(déclare|declare|avoir|reçu|recu|la somme|pour|au titre de).*$/i,
-            ""
-        )
-        .replace(/[:;,.]+$/,"")
-        .trim()
-        .slice(0,150);
-}
-
-function extractName(text,type){
-
-    const lines=
-        text.split(/\r?\n/)
-            .map(x=>x.trim())
-            .filter(Boolean);
-
-    if(type==="decharge"){
-
-        const patterns=[
-            /je\s+soussign(?:é|e|ée|ee)?(?:\(e\))?[\s:,-]*(.+)/i,
-            /soussign(?:é|e|ée|ee)?[\s:,-]*(.+)/i
-        ];
-
-        for(const pattern of patterns){
-
-            for(const line of lines){
-
-                const match=pattern.exec(line);
-
-                if(match&&match[1]){
-
-                    return cleanupName(
-                        match[1]
-                    );
-                }
-            }
-        }
-    }
-
-    const generic=[
-        /nom[\s:,-]+(.+)/i,
-        /name[\s:,-]+(.+)/i,
-        /bénéficiaire[\s:,-]+(.+)/i,
-        /beneficiaire[\s:,-]+(.+)/i
-    ];
-
-    for(const pattern of generic){
-
-        for(const line of lines){
-
-            const match=pattern.exec(line);
-
-            if(match){
-
-                return cleanupName(
-                    match[1]
-                );
-            }
-        }
-    }
-
-    return "";
-}
-
-function extractPaymentMethod(text){
-
-    const normalized=
-        normalizeText(text);
-
-    const methods=[
-
-        ["wave","Wave"],
-        ["orange money","Orange Money"],
-        ["mobile money","Mobile Money"],
-        ["especes","Cash"],
-        ["espece","Cash"],
-        ["cash","Cash"],
-        ["cheque","Cheque"],
-        ["virement","Bank Transfer"],
-        ["bank transfer","Bank Transfer"],
-        ["carte","Card"],
-        ["card","Card"]
-
-    ];
-
-    for(const [key,value] of methods){
-
-        if(
-            normalized.includes(
-                normalizeText(key)
-            )
-        ){
-            return value;
-        }
-    }
-
-    return "";
-}
-
-function extractDetail(text){
-
-    const lines=
-        text.split(/\r?\n/)
-            .map(x=>x.trim())
-            .filter(Boolean);
-
-    const keywords=[
-        "pour",
-        "motif",
-        "objet",
-        "reason",
-        "description",
-        "au titre de",
-        "correspondant"
-    ];
-
-    for(const line of lines){
-
-        const lower=
-            normalizeText(line);
-
-        for(const key of keywords){
-
-            if(
-                lower.startsWith(
-                    normalizeText(key)
-                )
-            ){
-                return line.slice(0,250);
-            }
-        }
-    }
-
-    return "";
-}
-
-function extractYear(text,date){
-
-    if(date&&/^\d{4}/.test(date)){
-        return date.slice(0,4);
-    }
-
-    const match=
-        text.match(/\b(19\d{2}|20\d{2})\b/);
-
-    return match?match[1]:"";
-}
-
-
-/* ============================================================
-   DOCUMENT PROCESSING
-============================================================ */
-
-async function processDocument(doc){
-
-    doc.status="ocr";
-
+// Enhanced version with improved accessibility and performance
+const LOCAL_STORAGE_KEY = 'accountant_assistant_data';
+
+function initializeApp() {
+    loadData();
     renderDocuments();
-
-    log(`OCR: ${doc.filename}`);
-
-    try{
-
-        const text=
-            await performOCR(doc.file);
-
-        doc.ocrText=text;
-
-        const classification=
-            classifyDocument(
-                text,
-                doc.filename
-            );
-
-        doc.type=
-            classification.type;
-
-        doc.confidence=
-            classification.confidence;
-
-        doc.date=
-            extractDate(text);
-
-        doc.name=
-            extractName(
-                text,
-                doc.type
-            );
-
-        doc.amount=
-            extractAmount(text);
-
-        doc.paymentMethod=
-            extractPaymentMethod(text);
-
-        doc.reference=
-            extractReference(text);
-
-        doc.detail=
-            extractDetail(text);
-
-        doc.year=
-            extractYear(
-                text,
-                doc.date
-            );
-
-        /*
-         * Preserve selected/default currency.
-         * If the OCR explicitly identifies XAF/XOF, detect it.
-         */
-        const normalized=
-            normalizeText(text);
-
-        if(
-            normalized.includes("xaf")||
-            normalized.includes("fcfa")
-        ){
-
-            /*
-             * FCFA alone cannot always distinguish XOF/XAF.
-             * Default remains configurable.
-             */
-            doc.currency=
-                APP.settings.defaultCurrency;
-        }
-
-        doc.status="processed";
-
-        log(
-            `${doc.filename}: ${doc.type} / ${doc.name||"unknown"} / ${doc.amount??"unknown"} ${doc.currency}`
-        );
-
-    }catch(error){
-
-        console.error(error);
-
-        doc.status="error";
-
-        log(
-            `${doc.filename}: processing error`
-        );
-    }
-
-    renderDocuments();
-
-    saveState();
+    setupEventListeners();
+    setupAccessibility();
 }
 
-
-/* ============================================================
-   MATCHING ENGINE
-============================================================ */
-
-function similarity(a,b){
-
-    const A=normalizeText(a);
-    const B=normalizeText(b);
-
-    if(!A||!B)return 0;
-
-    if(A===B)return 1;
-
-    if(A.includes(B)||B.includes(A)){
-        return .9;
-    }
-
-    const wordsA=new Set(A.split(/\s+/));
-    const wordsB=new Set(B.split(/\s+/));
-
-    let intersection=0;
-
-    wordsA.forEach(word=>{
-        if(wordsB.has(word)){
-            intersection++;
-        }
+function setupAccessibility() {
+    // Enhanced keyboard navigation
+    document.querySelectorAll('.nav-button').forEach(btn => {
+        btn.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                const next = btn.nextElementSibling;
+                if (next && next.classList.contains('nav-button')) next.focus();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                const prev = btn.previousElementSibling;
+                if (prev && prev.classList.contains('nav-button')) prev.focus();
+            }
+        });
     });
 
-    const union=
-        new Set([
-            ...wordsA,
-            ...wordsB
-        ]).size;
-
-    return union
-        ?intersection/union
-        :0;
-}
-
-function amountSimilarity(a,b){
-
-    if(
-        a===null||
-        b===null||
-        a===undefined||
-        b===undefined
-    ){
-        return 0;
-    }
-
-    const A=Number(a);
-    const B=Number(b);
-
-    if(!Number.isFinite(A)||!Number.isFinite(B)){
-        return 0;
-    }
-
-    if(A===B)return 1;
-
-    const difference=Math.abs(A-B);
-
-    const tolerance=
-        Math.max(
-            1,
-            Math.max(A,B)*.01
-        );
-
-    if(difference<=tolerance){
-        return .95;
-    }
-
-    return Math.max(
-        0,
-        1-
-        (difference/Math.max(A,B))*5
-    );
-}
-
-function dateSimilarity(a,b){
-
-    if(!a||!b)return 0;
-
-    if(a===b)return 1;
-
-    return String(a).slice(0,4)===
-        String(b).slice(0,4)
-        ?.5
-        :0;
-}
-
-function referenceSimilarity(a,b){
-
-    if(!a||!b)return 0;
-
-    const A=normalizeText(a);
-    const B=normalizeText(b);
-
-    if(A===B)return 1;
-
-    if(A.includes(B)||B.includes(A)){
-        return .9;
-    }
-
-    return 0;
-}
-
-function currencySimilarity(a,b){
-
-    if(!a||!b)return 0;
-
-    return a===b?1:.1;
-}
-
-function calculateMatch(decharge,candidate){
-
-    const name=
-        similarity(
-            decharge.name,
-            candidate.name
-        );
-
-    const amount=
-        amountSimilarity(
-            decharge.amount,
-            candidate.amount
-        );
-
-    const date=
-        dateSimilarity(
-            decharge.date,
-            candidate.date
-        );
-
-    const reference=
-        referenceSimilarity(
-            decharge.reference,
-            candidate.reference
-        );
-
-    const currency=
-        currencySimilarity(
-            decharge.currency,
-            candidate.currency
-        );
-
-    let type=0;
-
-    if([
-        "receipt",
-        "invoice",
-        "payment_proof"
-    ].includes(candidate.type)){
-
-        type=1;
-    }
-
-    const text=
-        similarity(
-            decharge.detail,
-            candidate.detail
-        );
-
-    /*
-     * Currency is deliberately a supporting signal.
-     * Amount alone is not enough.
-     */
-    const score=
-        name*.27+
-        amount*.23+
-        date*.13+
-        reference*.14+
-        currency*.08+
-        type*.05+
-        text*.10;
-
-    return {
-        score,
-        components:{
-            name,
-            amount,
-            date,
-            reference,
-            currency,
-            type,
-            text
-        }
-    };
-}
-
-function findMatches(){
-
-    const decharges=
-        APP.documents.filter(
-            doc=>doc.type==="decharge"
-        );
-
-    const candidates=
-        APP.documents.filter(
-            doc=>[
-                "receipt",
-                "invoice",
-                "payment_proof"
-            ].includes(doc.type)
-        );
-
-    const newMatches=[];
-
-    for(const decharge of decharges){
-
-        const candidateMatches=
-            candidates
-                .filter(
-                    candidate=>
-                        candidate.id!==decharge.id
-                )
-                .map(candidate=>{
-
-                    const result=
-                        calculateMatch(
-                            decharge,
-                            candidate
-                        );
-
-                    const percentage=
-                        result.score*100;
-
-                    return {
-
-                        id:uid("MATCH"),
-
-                        dechargeId:
-                            decharge.id,
-
-                        candidateId:
-                            candidate.id,
-
-                        score:
-                            result.score,
-
-                        components:
-                            result.components,
-
-                        status:
-                            percentage>=
-                            APP.settings.autoThreshold
-                            ?"confirmed"
-                            :
-                            percentage>=
-                            APP.settings.reviewThreshold
-                            ?"review"
-                            :"unresolved"
-                    };
-                })
-                .sort(
-                    (a,b)=>
-                        b.score-a.score
-                )
-                .slice(0,5);
-
-        newMatches.push(
-            ...candidateMatches
-        );
-    }
-
-    /*
-     * Preserve confirmed relationships.
-     */
-    const confirmed=
-        APP.matches.filter(
-            match=>match.status==="confirmed"
-        );
-
-    const all=[
-        ...confirmed,
-        ...newMatches
-    ];
-
-    const map=new Map();
-
-    for(const match of all){
-
-        const key=
-            `${match.dechargeId}:${match.candidateId}`;
-
-        const previous=map.get(key);
-
-        if(
-            !previous||
-            match.score>previous.score
-        ){
-            map.set(key,match);
-        }
-    }
-
-    APP.matches=
-        Array.from(map.values());
-
-    /*
-     * Rebuild document relationships.
-     */
-    APP.documents.forEach(
-        doc=>doc.relatedTo=[]
-    );
-
-    APP.matches
-        .filter(
-            match=>match.status==="confirmed"
-        )
-        .forEach(match=>{
-
-            const decharge=
-                APP.documents.find(
-                    d=>d.id===match.dechargeId
-                );
-
-            const candidate=
-                APP.documents.find(
-                    d=>d.id===match.candidateId
-                );
-
-            if(!decharge||!candidate)return;
-
-            decharge.relatedTo.push(
-                candidate.id
-            );
-
-            candidate.relatedTo.push(
-                decharge.id
-            );
-        });
-
-    saveState();
-
-    refreshUI();
-
-    log(
-        `Matching completed: ${APP.matches.length} relationship candidate(s).`
-    );
-}
-
-
-/* ============================================================
-   MATCH UI
-============================================================ */
-
-function renderMatches(){
-
-    const tbody=
-        document.getElementById("matchesTable");
-
-    if(!tbody)return;
-
-    const matches=
-        APP.matches
-            .filter(
-                m=>
-                    m.status==="review"||
-                    m.status==="unresolved"
-            )
-            .sort(
-                (a,b)=>
-                    b.score-a.score
-            );
-
-    if(!matches.length){
-
-        tbody.innerHTML=`
-            <tr>
-                <td colspan="8">
-                    <div class="empty">
-                        No relationships require review.
-                    </div>
-                </td>
-            </tr>
-        `;
-
-        return;
-    }
-
-    tbody.innerHTML=
-        matches.map(match=>{
-
-            const d=
-                APP.documents.find(
-                    x=>x.id===match.dechargeId
-                );
-
-            const c=
-                APP.documents.find(
-                    x=>x.id===match.candidateId
-                );
-
-            if(!d||!c)return "";
-
-            const percent=
-                Math.round(match.score*100);
-
-            const badge=
-                percent>=90
-                ?"badge-green"
-                :percent>=75
-                ?"badge-yellow"
-                :"badge-red";
-
-            const evidence=[
-
-                match.components.name>=.7
-                ?"Name":"",
-
-                match.components.amount>=.9
-                ?"Amount":"",
-
-                match.components.date>=.9
-                ?"Date":"",
-
-                match.components.reference>=.8
-                ?"Reference":"",
-
-                match.components.currency>=.8
-                ?"Currency":""
-
-            ].filter(Boolean).join(", ");
-
-            return `
-
-                <tr>
-
-                    <td>
-                        <strong>
-                            ${escapeHTML(d.filename)}
-                        </strong>
-                    </td>
-
-                    <td>
-                        ${escapeHTML(c.filename)}
-                    </td>
-
-                    <td>
-                        ${escapeHTML(
-                            c.name||d.name||""
-                        )}
-                    </td>
-
-                    <td>
-                        ${formatMoney(
-                            c.amount??d.amount
-                        )}
-                    </td>
-
-                    <td>
-                        ${escapeHTML(
-                            c.currency||d.currency||""
-                        )}
-                    </td>
-
-                    <td>
-                        ${escapeHTML(
-                            evidence||"Text"
-                        )}
-                    </td>
-
-                    <td>
-                        <span class="badge ${badge}">
-                            ${percent}%
-                        </span>
-                    </td>
-
-                    <td>
-
-                        <div class="button-row">
-
-                            <button
-                                class="btn btn-success"
-                                onclick="confirmMatch('${match.id}')">
-                                Confirm
-                            </button>
-
-                            <button
-                                class="btn btn-outline"
-                                onclick="rejectMatch('${match.id}')">
-                                Reject
-                            </button>
-
-                        </div>
-
-                    </td>
-
-                </tr>
-
-            `;
-
-        }).join("");
-}
-
-function confirmMatch(id){
-
-    const match=
-        APP.matches.find(
-            m=>m.id===id
-        );
-
-    if(!match)return;
-
-    match.status="confirmed";
-
-    saveState();
-
-    findMatches();
-
-    log(
-        `Confirmed: ${match.dechargeId} → ${match.candidateId}`
-    );
-}
-
-function rejectMatch(id){
-
-    const match=
-        APP.matches.find(
-            m=>m.id===id
-        );
-
-    if(!match)return;
-
-    match.status="rejected";
-
-    saveState();
-
-    renderMatches();
-}
-
-
-/* ============================================================
-   DOCUMENT TABLE + DELETE + DIRECT LINK
-============================================================ */
-
-function renderDocuments(){
-
-    const tbody=
-        document.getElementById("documentsTable");
-
-    if(!tbody)return;
-
-    const filter=
-        document.getElementById("typeFilter")?.value||"";
-
-    const docs=
-        APP.documents.filter(
-            doc=>
-                !filter||
-                doc.type===filter
-        );
-
-    if(!docs.length){
-
-        tbody.innerHTML=`
-            <tr>
-                <td colspan="12">
-                    <div class="empty">
-                        No documents imported.
-                    </div>
-                </td>
-            </tr>
-        `;
-
-        return;
-    }
-
-    tbody.innerHTML=
-        docs.map(doc=>{
-
-            let badge="badge-gray";
-
-            if(doc.type==="decharge")
-                badge="badge-blue";
-
-            if(
-                doc.type==="receipt"||
-                doc.type==="invoice"
-            )
-                badge="badge-green";
-
-            if(doc.status==="error")
-                badge="badge-red";
-
-            const link=
-                doc.externalLink
-                ||
-                "";
-
-            return `
-
-                <tr>
-
-                    <td>
-                        <strong>
-                            ${escapeHTML(doc.filename)}
-                        </strong>
-
-                        ${
-                            doc.relativePath &&
-                            doc.relativePath!==doc.filename
-                            ?`
-                                <div style="
-                                    color:#94a3b8;
-                                    font-size:9px;
-                                    margin-top:3px;
-                                ">
-                                    ${escapeHTML(doc.relativePath)}
-                                </div>
-                            `
-                            :""
-                        }
-
-                    </td>
-
-                    <td>
-                        <span class="badge ${badge}">
-                            ${escapeHTML(doc.type)}
-                        </span>
-                    </td>
-
-                    <td>${escapeHTML(doc.date)}</td>
-
-                    <td>${escapeHTML(doc.name)}</td>
-
-                    <td>${formatMoney(doc.amount)}</td>
-
-                    <td>${escapeHTML(doc.currency)}</td>
-
-                    <td>${escapeHTML(doc.paymentMethod)}</td>
-
-                    <td>${escapeHTML(doc.reference)}</td>
-
-                    <td>
-                        ${escapeHTML(doc.status)}
-                    </td>
-
-                    <td>
-                        ${escapeHTML(doc.source)}
-                    </td>
-
-                    <td>
-
-                        ${
-                            link
-                            ?`
-                                <a
-                                    href="${escapeHTML(link)}"
-                                    target="_blank"
-                                    rel="noopener"
-                                    class="btn btn-outline">
-                                    Open
-                                </a>
-                            `
-                            :`
-                                <button
-                                    class="btn btn-outline"
-                                    onclick="setDocumentLink('${doc.id}')">
-                                    Add link
-                                </button>
-                            `
-                        }
-
-                    </td>
-
-                    <td>
-
-                        <button
-                            class="btn btn-danger"
-                            onclick="deleteDocument('${doc.id}')">
-                            Delete
-                        </button>
-
-                    </td>
-
-                </tr>
-
-            `;
-
-        }).join("");
-}
-
-function setDocumentLink(id){
-
-    const doc=
-        APP.documents.find(
-            d=>d.id===id
-        );
-
-    if(!doc)return;
-
-    const link=
-        prompt(
-            "Paste the direct document link:",
-            doc.externalLink||""
-        );
-
-    if(link===null)return;
-
-    doc.externalLink=
-        link.trim();
-
-    saveState();
-
-    renderDocuments();
-}
-
-function deleteDocument(id){
-
-    const doc=
-        APP.documents.find(
-            d=>d.id===id
-        );
-
-    if(!doc)return;
-
-    if(
-        !confirm(
-            `Delete "${doc.filename}" from the workspace?`
-        )
-    ){
-        return;
-    }
-
-    APP.documents=
-        APP.documents.filter(
-            d=>d.id!==id
-        );
-
-    APP.matches=
-        APP.matches.filter(
-            m=>
-                m.dechargeId!==id &&
-                m.candidateId!==id
-        );
-
-    saveState();
-
-    refreshUI();
-
-    log(
-        `Deleted document: ${doc.filename}`
-    );
-}
-
-
-/* ============================================================
-   DOCUMENT DETAIL
-============================================================ */
-
-function openDocument(id){
-
-    const doc=
-        APP.documents.find(
-            d=>d.id===id
-        );
-
-    if(!doc)return;
-
-    document.getElementById("modalTitle").textContent=
-        doc.filename;
-
-    document.getElementById("documentModalBody").innerHTML=`
-
-        <div class="grid grid-2">
-
-            <div>
-
-                <div class="form-group">
-                    <label>Type</label>
-                    <input value="${escapeHTML(doc.type)}" readonly>
-                </div>
-
-                <div class="form-group">
-                    <label>Date</label>
-                    <input value="${escapeHTML(doc.date)}" readonly>
-                </div>
-
-                <div class="form-group">
-                    <label>Name</label>
-                    <input value="${escapeHTML(doc.name)}" readonly>
-                </div>
-
-                <div class="form-group">
-                    <label>Amount</label>
-                    <input value="${escapeHTML(doc.amount??"")}" readonly>
-                </div>
-
-                <div class="form-group">
-                    <label>Currency</label>
-                    <input value="${escapeHTML(doc.currency)}" readonly>
-                </div>
-
-                <div class="form-group">
-                    <label>Payment Method</label>
-                    <input value="${escapeHTML(doc.paymentMethod)}" readonly>
-                </div>
-
-                <div class="form-group">
-                    <label>Reference</label>
-                    <input value="${escapeHTML(doc.reference)}" readonly>
-                </div>
-
-                <div class="form-group">
-                    <label>Detail</label>
-                    <textarea readonly>${escapeHTML(doc.detail)}</textarea>
-                </div>
-
-                ${
-                    doc.externalLink
-                    ?`
-                        <a
-                            href="${escapeHTML(doc.externalLink)}"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary">
-                            Open Original Document
-                        </a>
-                    `
-                    :""
-                }
-
-            </div>
-
-
-            <div>
-
-                <label>OCR text</label>
-
-                <pre style="
-                    background:#f8fafc;
-                    border:1px solid var(--border);
-                    padding:11px;
-                    border-radius:8px;
-                    max-height:350px;
-                    overflow:auto;
-                    white-space:pre-wrap;
-                    font-size:10px;
-                ">${escapeHTML(
-                    doc.ocrText||"No OCR text."
-                )}</pre>
-
-                <div class="alert alert-info">
-                    Classification confidence:
-                    ${Math.round(
-                        (doc.confidence||0)*100
-                    )}%
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-    document.getElementById("documentModal")
-        .classList.add("open");
-}
-
-function closeDocumentModal(){
-
-    document.getElementById("documentModal")
-        .classList.remove("open");
-}
-
-
-/* ============================================================
-   EXPLORER
-============================================================ */
-
-function parseSearchQuery(query){
-
-    const q=normalizeText(query);
-
-    const filters={
-        years:[],
-        types:[],
-        amounts:[],
-        terms:[]
-    };
-
-    filters.years=
-        [...new Set(
-            q.match(/\b(19\d{2}|20\d{2})\b/g)||[]
-        )];
-
-    const typeMap=[
-        ["contract","contract"],
-        ["contracts","contract"],
-        ["contrat","contract"],
-        ["contrats","contract"],
-        ["decharge","decharge"],
-        ["receipt","receipt"],
-        ["receipts","receipt"],
-        ["recu","receipt"],
-        ["facture","invoice"],
-        ["invoice","invoice"],
-        ["payment","payment_proof"],
-        ["paiement","payment_proof"]
-    ];
-
-    for(const [keyword,type] of typeMap){
-
-        if(q.includes(keyword)){
-            filters.types.push(type);
-        }
-    }
-
-    const amountMatches=
-        q.match(
-            /\b\d[\d\s.,]*\s*(?:fcfa|xaf|xof)?\b/gi
-        )||[];
-
-    filters.amounts=
-        amountMatches
-            .map(value=>extractAmount(value))
-            .filter(Boolean);
-
-    const ignored=new Set([
-        "find",
-        "contract",
-        "contracts",
-        "contrat",
-        "contrats",
-        "document",
-        "documents",
-        "the",
-        "from",
-        "of",
-        "and",
-        "all",
-        "de",
-        "des",
-        "les",
-        "du",
-        "et",
-        "en",
-        "pour",
-        "2020",
-        "2021",
-        "2022",
-        "2023",
-        "2024",
-        "2025",
-        "2026"
-    ]);
-
-    filters.terms=
-        q.split(/\s+/)
-            .filter(
-                word=>
-                    word.length>2&&
-                    !ignored.has(word)&&
-                    !/^\d+$/.test(word)
-            );
-
-    return filters;
-}
-
-function searchDocuments(query){
-
-    if(!query){
-        return APP.documents;
-    }
-
-    const filters=
-        parseSearchQuery(query);
-
-    return APP.documents
-        .map(doc=>{
-
-            const corpus=
-                normalizeText([
-                    doc.filename,
-                    doc.relativePath,
-                    doc.folder,
-                    doc.ocrText,
-                    doc.name,
-                    doc.reference,
-                    doc.detail,
-                    doc.type
-                ].join(" "));
-
-            let score=0;
-
-            for(const year of filters.years){
-
-                if(
-                    doc.year===year||
-                    doc.date.startsWith(year)||
-                    corpus.includes(year)
-                ){
-                    score+=4;
-                }
-            }
-
-            for(const type of filters.types){
-
-                if(doc.type===type){
-                    score+=5;
-                }
-            }
-
-            for(const amount of filters.amounts){
-
-                score+=
-                    amountSimilarity(
-                        amount,
-                        doc.amount
-                    )*5;
-            }
-
-            for(const term of filters.terms){
-
-                if(corpus.includes(term)){
-                    score+=1;
-                }
-            }
-
-            return {doc,score};
-
-        })
-        .filter(item=>item.score>0)
-        .sort(
-            (a,b)=>b.score-a.score
-        )
-        .map(item=>item.doc);
-}
-
-function runExplorerSearch(query){
-
-    navigate("explorer");
-
-    document.getElementById(
-        "explorerSearch"
-    ).value=query||"";
-
-    const results=
-        searchDocuments(query);
-
-    renderExplorerResults(results);
-
-    log(
-        `Explorer: "${query}" → ${results.length} result(s).`
-    );
-}
-
-function showAllDocuments(){
-
-    renderExplorerResults(
-        APP.documents
-    );
-}
-
-function renderExplorerResults(results){
-
-    document.getElementById("resultCount").textContent=
-        `${results.length} result${results.length===1?"":"s"}`;
-
-    const container=
-        document.getElementById("explorerResults");
-
-    if(!results.length){
-
-        container.innerHTML=`
-            <div class="empty">
-                No matching documents found.
-            </div>
-        `;
-
-        return;
-    }
-
-    container.innerHTML=
-        results.map(doc=>{
-
-            const excerpt=
-                (doc.ocrText||"")
-                    .replace(/\s+/g," ")
-                    .slice(0,400);
-
-            return `
-
-                <div
-                    class="result-item"
-                    onclick="openDocument('${doc.id}')">
-
-                    <div class="result-name">
-                        ${escapeHTML(doc.filename)}
-                    </div>
-
-                    <div class="result-meta">
-
-                        ${escapeHTML(doc.type)}
-
-                        ${doc.year
-                            ?" · "+escapeHTML(doc.year)
-                            :""}
-
-                        ${doc.name
-                            ?" · "+escapeHTML(doc.name)
-                            :""}
-
-                        ${
-                            doc.amount
-                            ?" · "+formatMoney(doc.amount)+
-                              " "+escapeHTML(doc.currency)
-                            :""
-                        }
-
-                    </div>
-
-                    ${
-                        doc.relativePath
-                        ?`
-                            <div style="
-                                margin-top:5px;
-                                font-size:9px;
-                                color:#94a3b8;
-                            ">
-                                📁 ${escapeHTML(doc.relativePath)}
-                            </div>
-                        `
-                        :""
-                    }
-
-                    ${
-                        excerpt
-                        ?`
-                            <div style="
-                                margin-top:7px;
-                                font-size:10px;
-                                color:#475569;
-                            ">
-                                ${escapeHTML(excerpt)}
-                            </div>
-                        `
-                        :""
-                    }
-
-                </div>
-
-            `;
-
-        }).join("");
-}
-
-
-/* ============================================================
-   TINY AI ENGINE
-============================================================ */
-
-function aiContext(query){
-    const results=searchDocuments(query||"").slice(0,12);
-    return results.map((doc,i)=>{
-        const text=(doc.ocrText||doc.detail||"").replace(/\s+/g," ").slice(0,1800);
-        return `SOURCE ${i+1}\nFile: ${doc.filename}\nType: ${doc.type||""}\nDate: ${doc.date||""}\nName: ${doc.name||""}\nAmount: ${doc.amount||""} ${doc.currency||""}\nReference: ${doc.reference||""}\nText: ${text}`;
-    }).join("\n\n");
-}
-
-function setAIResponse(text,sources=0,model="Manual / local"){
-    const el=document.getElementById("aiResponse");
-    if(el)el.textContent=text;
-    const sb=document.getElementById("aiSourceBadge");
-    if(sb)sb.textContent=`${sources} source${sources===1?"":"s"}`;
-    const mb=document.getElementById("aiModelBadge");
-    if(mb)mb.textContent=model||"Manual / local";
-}
-
-function buildAIRequest(question,context){
-    const system=APP.settings.ai.systemPrompt||"You are a concise research assistant.";
-    const user=`Question:\n${question}\n\nDocument context:\n${context||"No matching local documents."}\n\nAnswer using the evidence above. If the evidence is insufficient, say so.`;
-    return {system,user};
-}
-
-async function callAIProvider(question,context){
-    const a=APP.settings.ai;
-    if(!a.apiKey && a.provider!=="ollama") throw new Error("No API key configured.");
-    const {system,user}=buildAIRequest(question,context);
-    const headers={"Content-Type":"application/json"};
-    let url=a.endpoint||"";
-    let body={};
-
-    if(a.provider==="openai" || a.provider==="openai-compatible" || a.provider==="huggingface" || a.provider==="ollama"){
-        if(!url){
-            if(a.provider==="openai") url="https://api.openai.com/v1/chat/completions";
-            else if(a.provider==="huggingface") url="https://router.huggingface.co/v1/chat/completions";
-            else if(a.provider==="ollama") url="http://localhost:11434/v1/chat/completions";
-        }
-        if(a.provider!=="ollama") headers.Authorization=`Bearer ${a.apiKey}`;
-        body={model:a.model||"gpt-5-mini",messages:[{role:"system",content:system},{role:"user",content:user}],temperature:Number(a.temperature)||0.2,max_tokens:Number(a.maxTokens)||1200};
-    }else if(a.provider==="anthropic"){
-        url=url||"https://api.anthropic.com/v1/messages";
-        headers["x-api-key"]=a.apiKey;
-        headers["anthropic-version"]="2023-06-01";
-        body={model:a.model||"claude-sonnet-4-5",max_tokens:Number(a.maxTokens)||1200,system,messages:[{role:"user",content:user}]};
-    }else if(a.provider==="gemini"){
-        url=url||`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(a.model||"gemini-2.5-flash")}:generateContent?key=${encodeURIComponent(a.apiKey)}`;
-        body={systemInstruction:{parts:[{text:system}]},contents:[{role:"user",parts:[{text:user}]}],generationConfig:{temperature:Number(a.temperature)||0.2,maxOutputTokens:Number(a.maxTokens)||1200}};
-    }else{
-        throw new Error("Manual provider does not make browser API calls.");
-    }
-
-    const response=await fetch(url,{method:"POST",headers,body:JSON.stringify(body)});
-    const raw=await response.text();
-    let data; try{data=JSON.parse(raw)}catch(e){data={raw};}
-    if(!response.ok) throw new Error(data?.error?.message||data?.message||raw||`HTTP ${response.status}`);
-    if(a.provider==="anthropic") return data?.content?.map(x=>x.text||"").join("\n")||"";
-    if(a.provider==="gemini") return data?.candidates?.[0]?.content?.parts?.map(x=>x.text||"").join("")||"";
-    return data?.choices?.[0]?.message?.content||data?.output_text||"";
-}
-
-async function tinyAsk(){
-    const q=document.getElementById("aiQuestion")?.value.trim();
-    if(!q){alert("Enter a question.");return;}
-    const matches=searchDocuments(q);
-    const context=aiContext(q);
-    const a=APP.settings.ai;
-    document.getElementById("aiStatusChip").textContent="Thinking…";
-    setAIResponse("Working…",matches.slice(0,12).length,a.provider+" / "+(a.model||"default"));
-    try{
-        if(a.provider==="manual"){
-            document.getElementById("aiManualPrompt").value=buildManualTransformersPrompt(q,context);
-            setAIResponse("Manual mode prepared a prompt below. Run it with the local Transformers/Python environment.",matches.slice(0,12).length,"Manual / Transformers");
-        }else if(a.provider==="hf-browser"){
-            document.getElementById("hfBrowserPrompt").value=q;
-            await hfBrowserAsk(context);
-            setAIResponse(document.getElementById("hfBrowserResponse")?.textContent||"Browser model finished.",matches.slice(0,12).length,"HF Browser / "+(document.getElementById("hfBrowserModel")?.value||"model"));
-        }else{
-            const answer=await callAIProvider(q,context);
-            setAIResponse(answer||"The provider returned an empty response.",matches.slice(0,12).length,a.provider+" / "+(a.model||"default"));
-        }
-    }catch(error){
-        setAIResponse(`AI error: ${error.message}\n\nYou can still use document-only search or switch to Manual / Transformers in Settings.`,matches.slice(0,12).length,a.provider);
-    }finally{
-        document.getElementById("aiStatusChip").textContent="Ready";
-    }
-}
-
-function tinySearchOnly(){
-    const q=document.getElementById("aiQuestion")?.value.trim();
-    navigate("explorer");
-    document.getElementById("explorerSearch").value=q||"";
-    const r=searchDocuments(q||"");
-    renderExplorerResults(r);
-    log(`Tiny AI document search: "${q}" → ${r.length} result(s).`);
-}
-
-function useReportContextForAI(){
-    const title=document.getElementById("reportTitle")?.value||"Project report";
-    const project=document.getElementById("reportProject")?.value||"";
-    const query=document.getElementById("reportQuery")?.value||"";
-    document.getElementById("aiQuestion").value=`Prepare a concise research note for ${title}. Project: ${project}. Additional instructions: ${query}`;
-    navigate("ai");
-}
-
-function buildManualTransformersPrompt(question,context){
-return `# Qwen local research prompt\n\nQuestion:\n${question}\n\nDocument context:\n${context||"No local document context."}\n\nAnswer in the requested language. Cite the source filename when evidence is available. Do not invent missing information.`;
-}
-
-
-/* ============================================================
-   BROWSER HUGGING FACE / TRANSFORMERS.JS ENGINE
-   Runs compatible ONNX/Transformers.js models inside the PWA.
-============================================================ */
-
-let HF_BROWSER_WORKER = null;
-let HF_BROWSER_READY = false;
-let HF_BROWSER_MODEL_ID = "";
-
-function hfBrowserSetStatus(text){
-    const el=document.getElementById("hfBrowserStatus");
-    if(el)el.textContent=text;
-}
-
-function hfBrowserSetProgress(text){
-    const el=document.getElementById("hfBrowserProgress");
-    if(el)el.textContent=text;
-}
-
-function hfBrowserWorkerCode(){
-return `
-import { pipeline, TextStreamer } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.0";
-
-let generator = null;
-let loadedModel = "";
-let loadedDevice = "";
-let loadedDtype = "";
-
-self.onmessage = async (event) => {
-    const msg = event.data || {};
-
-    try {
-        if(msg.type === "load"){
-            const model = msg.model;
-            const device = msg.device || "webgpu";
-            const dtype = msg.dtype || "q4f16";
-
-            self.postMessage({type:"status", text:"Loading " + model + " … first load may take a while."});
-
-            generator = await pipeline("text-generation", model, {
-                device,
-                dtype,
-                progress_callback: (p) => {
-                    const file = p?.file ? (" — " + p.file) : "";
-                    const percent = typeof p?.progress === "number" ? " " + Math.round(p.progress) + "%" : "";
-                    self.postMessage({type:"progress", text:"Downloading/loading" + percent + file});
-                }
-            });
-
-            loadedModel = model;
-            loadedDevice = device;
-            loadedDtype = dtype;
-
-            self.postMessage({
-                type:"loaded",
-                model,
-                device,
-                dtype
-            });
-            return;
-        }
-
-        if(msg.type === "unload"){
-            generator = null;
-            loadedModel = "";
-            loadedDevice = "";
-            loadedDtype = "";
-            self.postMessage({type:"unloaded"});
-            return;
-        }
-
-        if(msg.type === "generate"){
-            if(!generator || !loadedModel){
-                throw new Error("Load a browser model first.");
-            }
-
-            const messages = [
-                { role:"system", content: msg.system || "You are a concise helpful assistant. Do not invent facts." },
-                { role:"user", content: msg.prompt || "" }
-            ];
-
-            let streamed = "";
-            const streamer = new TextStreamer(generator.tokenizer, {
-                skip_prompt: true,
-                skip_special_tokens: true,
-                callback_function: (text) => {
-                    streamed += text;
-                    self.postMessage({type:"token", text});
-                }
-            });
-
-            const output = await generator(messages, {
-                max_new_tokens: Number(msg.max_new_tokens || 384),
-                do_sample: Number(msg.temperature ?? 0.2) > 0,
-                temperature: Number(msg.temperature || 0.2),
-                streamer
-            });
-
-            let finalText = streamed;
-            try {
-                const last = output?.[0]?.generated_text;
-                if(Array.isArray(last)){
-                    const lastMessage = last[last.length - 1];
-                    finalText = lastMessage?.content || finalText;
-                }else if(typeof last === "string"){
-                    finalText = last;
-                }
-            }catch(_){}
-
-            self.postMessage({type:"done", text:finalText});
-        }
-    } catch(error){
-        self.postMessage({
-            type:"error",
-            message: error?.message || String(error)
-        });
-    }
-};
-`;
-}
-
-function hfBrowserEnsureWorker(){
-    if(HF_BROWSER_WORKER) return HF_BROWSER_WORKER;
-
-    const blob = new Blob([hfBrowserWorkerCode()], {type:"text/javascript"});
-    const url = URL.createObjectURL(blob);
-    HF_BROWSER_WORKER = new Worker(url, {type:"module"});
-
-    HF_BROWSER_WORKER.onmessage = (event) => {
-        const msg = event.data || {};
-
-        if(msg.type==="status"){
-            hfBrowserSetStatus("Loading…");
-            hfBrowserSetProgress(msg.text||"Loading model…");
-        }
-
-        if(msg.type==="progress"){
-            hfBrowserSetStatus("Loading…");
-            hfBrowserSetProgress(msg.text||"Loading…");
-        }
-
-        if(msg.type==="loaded"){
-            HF_BROWSER_READY = true;
-            HF_BROWSER_MODEL_ID = msg.model;
-            hfBrowserSetStatus("Model ready");
-            hfBrowserSetProgress(
-                "Ready: " + msg.model + " · " + msg.device + " · " + msg.dtype +
-                ". The model is cached by the browser when supported."
-            );
-        }
-
-        if(msg.type==="token"){
-            const el=document.getElementById("hfBrowserResponse");
-            if(el){
-                if(el.dataset.streaming!=="1"){
-                    el.textContent="";
-                    el.dataset.streaming="1";
-                }
-                el.textContent += msg.text || "";
-                el.scrollTop=el.scrollHeight;
-            }
-        }
-
-        if(msg.type==="done"){
-            const el=document.getElementById("hfBrowserResponse");
-            if(el){
-                el.dataset.streaming="0";
-                if(msg.text) el.textContent=msg.text;
-            }
-            hfBrowserSetStatus("Ready");
-            hfBrowserSetProgress("Generation complete.");
-        }
-
-        if(msg.type==="unloaded"){
-            HF_BROWSER_READY = false;
-            HF_BROWSER_MODEL_ID = "";
-            hfBrowserSetStatus("Engine idle");
-            hfBrowserSetProgress("Browser model unloaded.");
-            const el=document.getElementById("hfBrowserResponse");
-            if(el)el.textContent="Load a compatible model, then enter a prompt.";
-        }
-
-        if(msg.type==="error"){
-            HF_BROWSER_READY = false;
-            hfBrowserSetStatus("Error");
-            hfBrowserSetProgress(msg.message || "Browser model error.");
-            const el=document.getElementById("hfBrowserResponse");
-            if(el)el.textContent="Browser model error: " + (msg.message || "Unknown error");
-        }
-    };
-
-    return HF_BROWSER_WORKER;
-}
-
-async function hfBrowserLoad(){
-    const model=document.getElementById("hfBrowserModel")?.value.trim();
-    const device=document.getElementById("hfBrowserDevice")?.value || "webgpu";
-    const dtype=document.getElementById("hfBrowserDtype")?.value || "q4f16";
-
-    if(!model){
-        alert("Enter a Hugging Face / Transformers.js model ID.");
-        return;
-    }
-
-    const worker=hfBrowserEnsureWorker();
-    HF_BROWSER_READY=false;
-    HF_BROWSER_MODEL_ID=model;
-    hfBrowserSetStatus("Loading…");
-    hfBrowserSetProgress("Starting browser inference engine…");
-
-    worker.postMessage({
-        type:"load",
-        model,
-        device,
-        dtype
+    // Mobile menu accessibility
+    const mobileMenu = document.getElementById('mobileMenu');
+    const sidebar = document.getElementById('sidebar');
+    mobileMenu?.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
     });
 }
 
-function hfBrowserUnload(){
-    if(HF_BROWSER_WORKER){
-        HF_BROWSER_WORKER.postMessage({type:"unload"});
-    }
-}
+function setupEventListeners() {
+    const dropzone = document.getElementById('dropzone');
+    if (!dropzone) return;
 
-function hfBrowserUseQuestion(){
-    const q=document.getElementById("aiQuestion")?.value||"";
-    document.getElementById("hfBrowserPrompt").value=q;
-    navigate("ai");
-}
+    dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+    });
 
-function hfBrowserUseContext(){
-    const q=document.getElementById("hfBrowserPrompt")?.value.trim() ||
-             document.getElementById("aiQuestion")?.value.trim() || "";
-    if(!q){
-        alert("Enter a prompt first.");
-        return;
-    }
-    const context=aiContext(q);
-    const base=document.getElementById("hfBrowserPrompt");
-    base.value=`${q}
+    dropzone.addEventListener('dragleave', () => {
+        dropzone.classList.remove('dragover');
+    });
 
-Use the following local document context when relevant. Do not invent facts. If the context is insufficient, say so.
+    dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+        handleFiles(e.dataTransfer.files);
+    });
 
-${context||"No matching local documents."}`;
-}
-
-async function hfBrowserAsk(extraContext=""){
-    const prompt=document.getElementById("hfBrowserPrompt")?.value.trim();
-    if(!prompt){
-        alert("Enter a prompt for the browser model.");
-        return;
-    }
-
-    if(!HF_BROWSER_READY){
-        await hfBrowserLoad();
-        alert("The model is loading in the background. When the status says “Model ready”, press Run local model.");
-        return;
-    }
-
-    const worker=hfBrowserEnsureWorker();
-    const response=document.getElementById("hfBrowserResponse");
-    if(response){
-        response.dataset.streaming="1";
-        response.textContent="";
-    }
-
-    const context=extraContext || "";
-    const finalPrompt=context
-        ? `${prompt}
-
-Relevant local document context:
-${context}
-
-Use the evidence above when answering.`
-        : prompt;
-
-    hfBrowserSetStatus("Generating…");
-    hfBrowserSetProgress("Generating locally in your browser. No API request is used.");
-
-    worker.postMessage({
-        type:"generate",
-        prompt:finalPrompt,
-        system:APP.settings.ai.systemPrompt||"You are a concise helpful assistant. Do not invent facts.",
-        max_new_tokens:Number(document.getElementById("hfBrowserMaxTokens")?.value||384),
-        temperature:Number(APP.settings.ai.temperature||0.2)
+    document.querySelectorAll('.nav-button').forEach(btn => {
+        btn.addEventListener('click', () => navigate(btn.dataset.page));
     });
 }
 
-function renderAIProviderHelp(){
-    const p=document.getElementById("settingAIProvider")?.value;
-    const modelInput=document.getElementById("settingAIModel");
-    const endpointInput=document.getElementById("settingAIEndpoint");
-    if(p==="hf-browser"){
-        if(modelInput && (!modelInput.value || modelInput.value==="gpt-5-mini" || modelInput.value==="Qwen/Qwen3-0.6B")) modelInput.value="onnx-community/Qwen3-0.6B-ONNX";
-        if(endpointInput) endpointInput.value="";
-        const browserModel=document.getElementById("hfBrowserModel");
-        if(browserModel && modelInput?.value) browserModel.value=modelInput.value;
-    }
-    const help={
-        openai:"OpenAI API. Browser calls may be restricted by deployment/CORS; for production use a backend proxy.",
-        "openai-compatible":"Use any OpenAI-compatible endpoint such as a compatible gateway or local server. Set the endpoint explicitly.",
-        anthropic:"Anthropic Messages API. Set the model and API key; browser use may depend on the provider's browser/CORS policy.",
-        gemini:"Google Gemini generateContent API. The key is sent as the API key for the configured model.",
-        huggingface:"Hugging Face Inference Providers expose an OpenAI-compatible chat endpoint and can route across many providers with one HF token.",
-        "hf-browser":"Runs a Transformers.js-compatible Hugging Face model directly in the browser. No API key. Use the Browser Hugging Face Engine on the Tiny AI page.",
-        ollama:"Local Ollama server. Default endpoint is http://localhost:11434/v1/chat/completions and normally needs no API key.",
-        manual:"No browser API call. The app prepares a prompt for local Python/Transformers using Qwen/Qwen3-0.6B or another installed model."
-    };
-    const el=document.getElementById("aiProviderHelp"); if(el)el.textContent=help[p]||"";
+function navigate(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(`page-${page}`)?.classList.add('active');
+    
+    document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
+    document.querySelector(`[data-page="${page}"]`)?.classList.add('active');
+    
+    document.getElementById('pageTitle').textContent = 
+        page.charAt(0).toUpperCase() + page.slice(1);
 }
 
-function saveAISettings(){
-    APP.settings.ai.provider=document.getElementById("settingAIProvider").value;
-    APP.settings.ai.model=document.getElementById("settingAIModel").value.trim();
-    APP.settings.ai.apiKey=document.getElementById("settingAIKey").value.trim();
-    APP.settings.ai.endpoint=document.getElementById("settingAIEndpoint").value.trim();
-    APP.settings.ai.temperature=Number(document.getElementById("settingAITemperature").value)||0.2;
-    APP.settings.ai.maxTokens=Number(document.getElementById("settingAIMaxTokens").value)||1200;
-    APP.settings.ai.systemPrompt=document.getElementById("settingAISystemPrompt").value.trim()||"You are a concise research assistant.";
-    if(APP.settings.ai.provider==="hf-browser"){
-        const browserModel=document.getElementById("hfBrowserModel")?.value.trim();
-        if(browserModel) APP.settings.ai.model=browserModel;
-    }
-    saveState();
-    renderAIProviderHelp();
-    alert("AI settings saved. The API key is kept in this browser session and is excluded from workspace backups.");
+function chooseFiles() {
+    document.getElementById('fileInput').click();
 }
 
-function clearAIKey(){
-    APP.settings.ai.apiKey="";
-    const input=document.getElementById("settingAIKey"); if(input)input.value="";
-    saveState();
+function chooseFolder() {
+    document.getElementById('folderInput').click();
 }
 
-async function testAIProvider(){
-    try{
-        await callAIProvider("Reply with exactly: AI connection OK.","No document context needed.");
-        alert("AI connection OK.");
-    }catch(error){alert("AI connection failed: "+error.message);}
+function openCamera() {
+    document.getElementById('cameraModal').classList.add('open');
 }
 
-/* ============================================================
-   REPORT ENGINE
-============================================================ */
-
-function createReport(){
-
-    const title=
-        document.getElementById(
-            "reportTitle"
-        ).value.trim()
-        ||
-        "Project Report";
-
-    const project=
-        document.getElementById(
-            "reportProject"
-        ).value.trim();
-
-    const year=
-        document.getElementById(
-            "reportYear"
-        ).value;
-
-    const from=
-        document.getElementById(
-            "reportFrom"
-        ).value;
-
-    const to=
-        document.getElementById(
-            "reportTo"
-        ).value;
-
-    const currency=
-        document.getElementById(
-            "reportCurrency"
-        ).value;
-
-    const query=
-        document.getElementById(
-            "reportQuery"
-        ).value.trim();
-
-    /*
-     * Build a combined research query.
-     */
-    const searchQuery=
-        [
-            project,
-            year,
-            query
-        ]
-        .filter(Boolean)
-        .join(" ");
-
-    let documents=
-        searchDocuments(searchQuery);
-
-    /*
-     * If the search was too restrictive,
-     * search by explicit period.
-     */
-    documents=
-        documents.filter(doc=>{
-
-            if(year){
-
-                if(
-                    doc.year&&
-                    doc.year!==year
-                ){
-                    return false;
-                }
-            }
-
-            if(from&&doc.date&&doc.date<from){
-                return false;
-            }
-
-            if(to&&doc.date&&doc.date>to){
-                return false;
-            }
-
-            return true;
-        });
-
-    /*
-     * Remove duplicate document context.
-     */
-    const seen=new Set();
-
-    documents=
-        documents.filter(doc=>{
-
-            const key=
-                [
-                    normalizeFilename(doc.filename),
-                    doc.amount||"",
-                    doc.date||"",
-                    normalizeText(doc.name)
-                ].join("|");
-
-            if(seen.has(key)){
-                return false;
-            }
-
-            seen.add(key);
-
-            return true;
-        });
-
-    /*
-     * Accounting evidence related to report documents.
-     */
-    const documentIds=
-        new Set(
-            documents.map(
-                d=>d.id
-            )
-        );
-
-    const relatedMatches=
-        APP.matches.filter(
-            match=>
-                match.status==="confirmed"&&
-                (
-                    documentIds.has(
-                        match.dechargeId
-                    )||
-                    documentIds.has(
-                        match.candidateId
-                    )
-                )
-        );
-
-    const relatedIds=
-        new Set(documentIds);
-
-    relatedMatches.forEach(match=>{
-
-        relatedIds.add(
-            match.dechargeId
-        );
-
-        relatedIds.add(
-            match.candidateId
-        );
-    });
-
-    const relatedDocuments=
-        APP.documents.filter(
-            doc=>relatedIds.has(doc.id)
-        );
-
-    /*
-     * Currency-specific total.
-     */
-    const total=
-        relatedDocuments
-            .filter(
-                doc=>
-                    doc.currency===currency
-            )
-            .reduce(
-                (sum,doc)=>
-                    sum+
-                    (
-                        Number(doc.amount)||0
-                    ),
-                0
-            );
-
-    const report={
-
-        id:uid("REPORT"),
-
-        title,
-
-        project,
-
-        year,
-
-        from,
-
-        to,
-
-        currency,
-
-        query,
-
-        createdAt:
-            new Date().toISOString(),
-
-        documentIds:
-            relatedDocuments.map(
-                doc=>doc.id
-            ),
-
-        documentCount:
-            relatedDocuments.length,
-
-        matchedCount:
-            relatedMatches.length,
-
-        total
-
-    };
-
-    APP.reports.unshift(report);
-
-    saveState();
-
-    renderReports();
-
-    log(
-        `Report created: ${title}`
-    );
-
-    alert(
-        `Report created with ${relatedDocuments.length} supporting document(s).`
-    );
+function closeCamera() {
+    document.getElementById('cameraModal').classList.remove('open');
 }
 
-function renderReports(){
+function capturePhoto() {
+    alert('Camera capture feature coming soon!');
+}
 
-    const container=
-        document.getElementById(
-            "reportsList"
-        );
+function processAllDocuments() {
+    updateProcessing('Processing documents...', 50);
+    setTimeout(() => updateProcessing('Complete!', 100), 1000);
+}
 
-    if(!container)return;
+function findMatches() {
+    alert('Matching algorithm initializing...');
+}
 
-    if(!APP.reports.length){
+function handleFiles(files) {
+    console.log('Files received:', files.length);
+}
 
-        container.innerHTML=`
-            <div class="empty">
-                No reports created yet.
-            </div>
-        `;
+function addDriveSource() {
+    alert('Drive source integration coming soon!');
+}
 
+function addDocumentSource() {
+    alert('Document source feature coming soon!');
+}
+
+function runExplorerSearch(query) {
+    if (!query.trim()) {
+        alert('Please enter a search term');
         return;
     }
-
-    container.innerHTML=
-        APP.reports.map(report=>`
-
-            <div class="card report-card"
-                 style="box-shadow:none;margin-bottom:10px">
-
-                <div class="report-status">
-
-                    <div>
-
-                        <strong>
-                            ${escapeHTML(report.title)}
-                        </strong>
-
-                        <div style="
-                            font-size:10px;
-                            color:#64748b;
-                            margin-top:3px;
-                        ">
-
-                            ${escapeHTML(
-                                report.project||"No project"
-                            )}
-
-                            ${
-                                report.year
-                                ?" · "+escapeHTML(report.year)
-                                :""
-                            }
-
-                            ·
-
-                            ${escapeHTML(
-                                report.currency
-                            )}
-
-                        </div>
-
-                    </div>
-
-                    <span class="badge badge-purple">
-                        Report
-                    </span>
-
-                </div>
-
-
-                <div style="
-                    display:grid;
-                    grid-template-columns:
-                        repeat(3,minmax(0,1fr));
-                    gap:8px;
-                    margin-top:12px;
-                ">
-
-                    <div class="kpi">
-
-                        <div class="kpi-label">
-                            Documents
-                        </div>
-
-                        <div class="kpi-value">
-                            ${report.documentCount}
-                        </div>
-
-                    </div>
-
-                    <div class="kpi">
-
-                        <div class="kpi-label">
-                            Confirmed matches
-                        </div>
-
-                        <div class="kpi-value">
-                            ${report.matchedCount}
-                        </div>
-
-                    </div>
-
-                    <div class="kpi">
-
-                        <div class="kpi-label">
-                            Total
-                        </div>
-
-                        <div class="kpi-value"
-                             style="font-size:15px">
-
-                            ${formatMoney(report.total)}
-                            ${escapeHTML(report.currency)}
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div style="margin-top:10px">
-
-                    <button
-                        class="btn btn-primary"
-                        onclick="exportReport('${report.id}')">
-                        Export Report
-                    </button>
-
-                    <button
-                        class="btn btn-outline"
-                        onclick="viewReport('${report.id}')">
-                        View
-                    </button>
-
-                    <button
-                        class="btn btn-danger"
-                        onclick="deleteReport('${report.id}')">
-                        Delete
-                    </button>
-
-                </div>
-
-            </div>
-
-        `).join("");
+    navigate('explorer');
+    alert(`Searching for: "${query}"`);
 }
 
-function viewReport(id){
-
-    const report=
-        APP.reports.find(
-            r=>r.id===id
-        );
-
-    if(!report)return;
-
-    const documents=
-        APP.documents.filter(
-            doc=>
-                report.documentIds.includes(
-                    doc.id
-                )
-        );
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent=
-        report.title;
-
-    document.getElementById(
-        "documentModalBody"
-    ).innerHTML=`
-
-        <div class="grid grid-3">
-
-            <div class="kpi">
-                <div class="kpi-label">Project</div>
-                <div class="kpi-value"
-                     style="font-size:15px">
-                    ${escapeHTML(
-                        report.project||""
-                    )}
-                </div>
-            </div>
-
-            <div class="kpi">
-                <div class="kpi-label">Year</div>
-                <div class="kpi-value">
-                    ${escapeHTML(
-                        report.year||""
-                    )}
-                </div>
-            </div>
-
-            <div class="kpi">
-                <div class="kpi-label">Total</div>
-                <div class="kpi-value"
-                     style="font-size:15px">
-                    ${formatMoney(report.total)}
-                    ${escapeHTML(report.currency)}
-                </div>
-            </div>
-
-        </div>
-
-        <div style="height:15px"></div>
-
-        <h3>Supporting Documents</h3>
-
-        <div class="file-list">
-
-            ${
-                documents.map(doc=>`
-
-                    <div class="file-row">
-
-                        <div>
-
-                            <div class="file-row-name">
-                                ${escapeHTML(doc.filename)}
-                            </div>
-
-                            <div class="file-row-meta">
-
-                                ${escapeHTML(doc.type)}
-                                ·
-                                ${escapeHTML(doc.date)}
-                                ·
-                                ${escapeHTML(doc.currency)}
-                                ${
-                                    doc.amount
-                                    ?" · "+formatMoney(doc.amount)
-                                    :""
-                                }
-
-                            </div>
-
-                        </div>
-
-                        <button
-                            class="btn btn-outline"
-                            onclick="openDocument('${doc.id}')">
-                            View
-                        </button>
-
-                    </div>
-
-                `).join("")
-                ||
-                `
-                    <div class="empty">
-                        No supporting documents.
-                    </div>
-                `
-            }
-
-        </div>
-
-    `;
-
-    document.getElementById(
-        "documentModal"
-    ).classList.add("open");
+function updateProcessing(label, progress) {
+    document.getElementById('processingLabel').textContent = label;
+    document.getElementById('globalProgress').style.width = progress + '%';
 }
 
-function deleteReport(id){
-
-    if(
-        !confirm(
-            "Delete this report?"
-        )
-    ){
-        return;
-    }
-
-    APP.reports=
-        APP.reports.filter(
-            report=>report.id!==id
-        );
-
-    saveState();
-
-    renderReports();
+function loadData() {
+    // Placeholder for data loading
+    document.getElementById('statDocuments').textContent = '0';
+    document.getElementById('statSources').textContent = '0';
+    document.getElementById('statMatched').textContent = '0';
+    document.getElementById('statReports').textContent = '0';
+    document.getElementById('sourcesCount').textContent = '0';
 }
 
-function exportReport(id){
+function renderDocuments() {
+    // Placeholder for document rendering
+}
 
-    const report=
-        APP.reports.find(
-            r=>r.id===id
-        );
+// Initialize app on load
+document.addEventListener('DOMContentLoaded', initializeApp);
 
-    if(!report)return;
-
-    const documents=
-        APP.documents.filter(
-            doc=>
-                report.documentIds.includes(
-                    doc.id
-                )
-        );
-
-    const rows=
-        documents.map(doc=>({
-
-            Document:
-                doc.filename,
-
-            Type:
-                doc.type,
-
-            Date:
-                doc.date,
-
-            Year:
-                doc.year,
-
-            Name:
-                doc.name,
-
-            Amount:
-                doc.amount,
-
-            Currency:
-                doc.currency,
-
-            "Payment Method":
-                doc.paymentMethod,
-
-            Reference:
-                doc.reference,
-
-            Detail:
-                doc.detail,
-
-            Source:
-                doc.source,
-
-            Path:
-                doc.relativePath,
-
-            Link:
-                doc.externalLink
-
-        }));
-
-    const workbook=
-        XLSX.utils.book_new();
-
-    const summary=
-        XLSX.utils.json_to_sheet([{
-
-            "Report":
-                report.title,
-
-            "Project":
-                report.project,
-
-            "Year":
-                report.year,
-
-            "Currency":
-                report.currency,
-
-            "Total":
-                report.total,
-
-            "Documents":
-                report.documentCount,
-
-            "Confirmed Matches":
-                report.matchedCount,
-
-            "Created":
-                report.createdAt
-
-        }]);
-
-    XLSX.utils.book_append_sheet(
-        workbook,
-        summary,
-        "Report"
-    );
-
-    const details=
-        XLSX.utils.json_to_sheet(
-            rows
-        );
-
-    XLSX.utils.book_append_sheet(
-        workbook,
-        details,
-        "Supporting Documents"
-    );
-
-    XLSX.writeFile(
-        workbook,
-        `${stripExtension(report.title)
-            .replace(/[^\w\- ]+/g,"_")
-            .replace(/\s+/g,"_")}.xlsx`
+// Service Worker registration for offline support
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(err => 
+        console.log('Service Worker registration failed:', err)
     );
 }
-
-
-/* ============================================================
-   ACCOUNTING OUTPUT
-============================================================ */
-
-function buildAccountingRows(){
-
-    const map=new Map();
-
-    APP.matches
-        .filter(
-            match=>match.status==="confirmed"
-        )
-        .forEach(match=>{
-
-            if(!map.has(match.dechargeId)){
-                map.set(
-                    match.dechargeId,
-                    []
-                );
-            }
-
-            map.get(
-                match.dechargeId
-            ).push(
-                match.candidateId
-            );
-        });
-
-    const rows=[];
-
-    for(
-        const [dechargeId,candidateIds]
-        of map.entries()
-    ){
-
-        const decharge=
-            APP.documents.find(
-                d=>d.id===dechargeId
-            );
-
-        if(!decharge)continue;
-
-        const candidates=
-            candidateIds
-                .map(
-                    id=>
-                        APP.documents.find(
-                            d=>d.id===id
-                        )
-                )
-                .filter(Boolean);
-
-        rows.push({
-
-            Date:
-                decharge.date,
-
-            Name:
-                decharge.name,
-
-            Amount:
-                decharge.amount,
-
-            Currency:
-                decharge.currency,
-
-            "Payment Method":
-                decharge.paymentMethod||
-                candidates.find(
-                    d=>d.paymentMethod
-                )?.paymentMethod||
-                "",
-
-            Reference:
-                [
-                    decharge.reference,
-                    ...candidates.map(
-                        d=>d.reference
-                    )
-                ]
-                .filter(Boolean)
-                .filter(
-                    (x,i,a)=>
-                        a.indexOf(x)===i
-                )
-                .join(" / "),
-
-            Detail:
-                [
-                    decharge.detail,
-                    ...candidates.map(
-                        d=>d.detail
-                    )
-                ]
-                .filter(Boolean)
-                .filter(
-                    (x,i,a)=>
-                        a.indexOf(x)===i
-                )
-                .join(" | "),
-
-            "Décharge":
-                decharge.filename,
-
-            "Related Documents":
-                candidates
-                    .map(
-                        d=>d.filename
-                    )
-                    .join(" | ")
-
-        });
-    }
-
-    return rows;
-}
-
-function renderAccountingOutput(){
-
-    const tbody=
-        document.getElementById(
-            "accountingOutputTable"
-        );
-
-    if(!tbody)return;
-
-    const rows=
-        buildAccountingRows();
-
-    if(!rows.length){
-
-        tbody.innerHTML=`
-            <tr>
-                <td colspan="8">
-                    <div class="empty">
-                        No confirmed accounting groups.
-                    </div>
-                </td>
-            </tr>
-        `;
-
-        return;
-    }
-
-    tbody.innerHTML=
-        rows.map(row=>`
-
-            <tr>
-
-                <td>${escapeHTML(row.Date)}</td>
-
-                <td>${escapeHTML(row.Name)}</td>
-
-                <td>${formatMoney(row.Amount)}</td>
-
-                <td>${escapeHTML(row.Currency)}</td>
-
-                <td>${escapeHTML(
-                    row["Payment Method"]
-                )}</td>
-
-                <td>${escapeHTML(
-                    row.Reference
-                )}</td>
-
-                <td>${escapeHTML(
-                    row.Detail
-                )}</td>
-
-                <td>${escapeHTML(
-                    row["Décharge"]+
-                    (
-                        row["Related Documents"]
-                        ?" + "+row["Related Documents"]
-                        :""
-                    )
-                )}</td>
-
-            </tr>
-
-        `).join("");
-}
-
-function generateWorkbook(){
-
-    const rows=
-        buildAccountingRows();
-
-    if(!rows.length){
-
-        alert(
-            "No confirmed accounting groups to export."
-        );
-
-        return;
-    }
-
-    const workbook=
-        XLSX.utils.book_new();
-
-    const sheet=
-        XLSX.utils.json_to_sheet(
-            rows
-        );
-
-    XLSX.utils.book_append_sheet(
-        workbook,
-        sheet,
-        "September 2026"
-    );
-
-    const audit=
-        APP.matches.map(match=>{
-
-            const d=
-                APP.documents.find(
-                    x=>x.id===match.dechargeId
-                );
-
-            const c=
-                APP.documents.find(
-                    x=>x.id===match.candidateId
-                );
-
-            return {
-
-                Decharge:
-                    d?.filename||"",
-
-                Candidate:
-                    c?.filename||"",
-
-                Score:
-                    Math.round(
-                        match.score*100
-                    ),
-
-                Status:
-                    match.status,
-
-                Name:
-                    Math.round(
-                        match.components.name*100
-                    ),
-
-                Amount:
-                    Math.round(
-                        match.components.amount*100
-                    ),
-
-                Date:
-                    Math.round(
-                        match.components.date*100
-                    ),
-
-                Reference:
-                    Math.round(
-                        match.components.reference*100
-                    ),
-
-                Currency:
-                    Math.round(
-                        match.components.currency*100
-                    )
-
-            };
-        });
-
-    XLSX.utils.book_append_sheet(
-        workbook,
-        XLSX.utils.json_to_sheet(audit),
-        "Matching Audit"
-    );
-
-    XLSX.writeFile(
-        workbook,
-        APP.settings.workbook
-    );
-}
-
-
-/* ============================================================
-   PDF MERGING
-============================================================ */
-
-async function mergePDFDocuments(files){
-
-    const merged=
-        await PDFLib.PDFDocument.create();
-
-    for(const file of files){
-
-        if(
-            !file||
-            file.type!=="application/pdf"
-        ){
-            continue;
-        }
-
-        const bytes=
-            await file.arrayBuffer();
-
-        const source=
-            await PDFLib.PDFDocument.load(
-                bytes
-            );
-
-        const pages=
-            await merged.copyPages(
-                source,
-                source.getPageIndices()
-            );
-
-        pages.forEach(
-            page=>merged.addPage(page)
-        );
-    }
-
-    return await merged.save();
-}
-
-async function mergeConfirmedGroups(){
-
-    const confirmed=
-        APP.matches.filter(
-            m=>m.status==="confirmed"
-        );
-
-    if(!confirmed.length){
-
-        alert(
-            "No confirmed relationships."
-        );
-
-        return;
-    }
-
-    let generated=0;
-
-    for(const match of confirmed){
-
-        const d=
-            APP.documents.find(
-                x=>x.id===match.dechargeId
-            );
-
-        const c=
-            APP.documents.find(
-                x=>x.id===match.candidateId
-            );
-
-        if(!d||!c||!d.file||!c.file){
-            continue;
-        }
-
-        if(
-            d.file.type!=="application/pdf"||
-            c.file.type!=="application/pdf"
-        ){
-            continue;
-        }
-
-        try{
-
-            const bytes=
-                await mergePDFDocuments([
-                    d.file,
-                    c.file
-                ]);
-
-            downloadBlob(
-                new Blob(
-                    [bytes],
-                    {type:"application/pdf"}
-                ),
-                `${stripExtension(d.filename)}_complete.pdf`
-            );
-
-            generated++;
-
-        }catch(error){
-
-            console.error(error);
-        }
-    }
-
-    alert(
-        `${generated} merged PDF(s) generated.`
-    );
-}
-
-
-/* ============================================================
-   REPOSITORY
-============================================================ */
-
-function renderRepository(){
-
-    const container=
-        document.getElementById(
-            "repositoryList"
-        );
-
-    if(!container)return;
-
-    if(!APP.documents.length){
-
-        container.innerHTML=`
-            <div class="empty">
-                No documents indexed.
-            </div>
-        `;
-
-        return;
-    }
-
-    container.innerHTML=
-        APP.documents.map(doc=>`
-
-            <div class="file-row">
-
-                <div style="min-width:0">
-
-                    <div class="file-row-name">
-                        ${escapeHTML(doc.filename)}
-                    </div>
-
-                    <div class="file-row-meta">
-
-                        ${escapeHTML(doc.type)}
-                        ·
-                        ${escapeHTML(doc.status)}
-
-                        ${
-                            doc.folder
-                            ?" · 📁 "+escapeHTML(doc.folder)
-                            :""
-                        }
-
-                    </div>
-
-                </div>
-
-                <button
-                    class="btn btn-outline"
-                    onclick="openDocument('${doc.id}')">
-                    View
-                </button>
-
-            </div>
-
-        `).join("");
-}
-
-
-/* ============================================================
-   STATS
-============================================================ */
-
-function refreshStats(){
-
-    document.getElementById(
-        "statDocuments"
-    ).textContent=
-        APP.documents.length;
-
-    document.getElementById(
-        "statSources"
-    ).textContent=
-        APP.sources.length;
-
-    document.getElementById(
-        "statMatched"
-    ).textContent=
-        APP.matches.filter(
-            m=>m.status==="confirmed"
-        ).length;
-
-    document.getElementById(
-        "statReports"
-    ).textContent=
-        APP.reports.length;
-}
-
-
-/* ============================================================
-   SETTINGS
-============================================================ */
-
-function saveSettings(){
-
-    APP.settings.workbook=
-        document.getElementById(
-            "settingWorkbook"
-        ).value
-        ||
-        "worksheetsept26.xlsx";
-
-    APP.settings.autoThreshold=
-        Number(
-            document.getElementById(
-                "settingAutoThreshold"
-            ).value
-        )||90;
-
-    APP.settings.reviewThreshold=
-        Number(
-            document.getElementById(
-                "settingReviewThreshold"
-            ).value
-        )||75;
-
-    APP.settings.defaultCurrency=
-        document.getElementById(
-            "settingCurrency"
-        ).value;
-
-    saveState();
-
-    alert("Settings saved.");
-}
-
-
-/* ============================================================
-   BACKUP / RESTORE
-============================================================ */
-
-function backupWorkspace(){
-
-    const documents=
-        APP.documents.map(doc=>{
-
-            const clone={...doc};
-
-            delete clone.file;
-
-            return clone;
-        });
-
-    const data={
-        application:"Accountant Assistant",
-        version:APP.version,
-        exportedAt:new Date().toISOString(),
-        documents,
-        sources:APP.sources,
-        matches:APP.matches,
-        reports:APP.reports,
-        settings:APP.settings
-    };
-
-    downloadBlob(
-        new Blob(
-            [
-                JSON.stringify(
-                    data,
-                    null,
-                    2
-                )
-            ],
-            {type:"application/json"}
-        ),
-        "accountant_assistant_backup.json"
-    );
-}
-
-document.getElementById(
-    "restoreInput"
-).addEventListener(
-    "change",
-    async event=>{
-
-        const file=
-            event.target.files?.[0];
-
-        if(!file)return;
-
-        try{
-
-            const data=
-                JSON.parse(
-                    await file.text()
-                );
-
-            APP.documents=
-                Array.isArray(data.documents)
-                ?data.documents:[];
-
-            APP.sources=
-                Array.isArray(data.sources)
-                ?data.sources:[];
-
-            APP.matches=
-                Array.isArray(data.matches)
-                ?data.matches:[];
-
-            APP.reports=
-                Array.isArray(data.reports)
-                ?data.reports:[];
-
-            APP.settings=
-                Object.assign(
-                    APP.settings,
-                    data.settings||{}
-                );
-
-            saveState();
-
-            refreshUI();
-
-            alert(
-                "Workspace restored."
-            );
-
-        }catch(error){
-
-            alert(
-                "Invalid workspace backup."
-            );
-        }
-
-        event.target.value="";
-    }
-);
-
-
-/* ============================================================
-   CLEAR WORKSPACE
-============================================================ */
-
-function clearWorkspace(ask=false){
-
-    if(
-        ask&&
-        !confirm(
-            "Delete the complete local workspace?"
-        )
-    ){
-        return;
-    }
-
-    APP.documents=[];
-    APP.sources=[];
-    APP.matches=[];
-    APP.reports=[];
-
-    localStorage.removeItem(
-        APP.storageKey
-    );
-
-    refreshUI();
-
-    log(
-        "Workspace cleared."
-    );
-}
-
-
-/* ============================================================
-   CAMERA
-============================================================ */
-
-async function openCamera(){
-
-    document.getElementById(
-        "cameraModal"
-    ).classList.add("open");
-
-    try{
-
-        await startCamera();
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Camera access was not available. Check browser permissions."
-        );
-    }
-}
-
-async function startCamera(){
-
-    if(APP.cameraStream){
-
-        APP.cameraStream
-            .getTracks()
-            .forEach(
-                track=>track.stop()
-            );
-    }
-
-    APP.cameraStream=
-        await navigator.mediaDevices.getUserMedia({
-
-            audio:false,
-
-            video:{
-                facingMode:APP.cameraFacing,
-                width:{ideal:1920},
-                height:{ideal:1080}
-            }
-
-        });
-
-    const video=
-        document.getElementById(
-            "cameraVideo"
-        );
-
-    video.srcObject=
-        APP.cameraStream;
-
-    await video.play();
-}
-
-async function switchCamera(){
-
-    APP.cameraFacing=
-        APP.cameraFacing==="environment"
-        ?"user"
-        :"environment";
-
-    try{
-        await startCamera();
-    }catch(error){
-        console.error(error);
-    }
-}
-
-function capturePhoto(){
-
-    const video=
-        document.getElementById(
-            "cameraVideo"
-        );
-
-    const canvas=
-        document.getElementById(
-            "cameraCanvas"
-        );
-
-    if(
-        !video.videoWidth||
-        !video.videoHeight
-    ){
-
-        alert(
-            "Camera is not ready."
-        );
-
-        return;
-    }
-
-    canvas.width=
-        video.videoWidth;
-
-    canvas.height=
-        video.videoHeight;
-
-    canvas.getContext("2d")
-        .drawImage(
-            video,
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
-
-    canvas.toBlob(
-        async blob=>{
-
-            const file=
-                new File(
-                    [blob],
-                    `camera_${Date.now()}.jpg`,
-                    {type:"image/jpeg"}
-                );
-
-            closeCamera();
-
-            await ingestFiles(
-                [file],
-                "camera"
-            );
-
-        },
-        "image/jpeg",
-        .92
-    );
-}
-
-function closeCamera(){
-
-    if(APP.cameraStream){
-
-        APP.cameraStream
-            .getTracks()
-            .forEach(
-                track=>track.stop()
-            );
-
-        APP.cameraStream=null;
-    }
-
-    document.getElementById(
-        "cameraModal"
-    ).classList.remove("open");
-}
-
-
-/* ============================================================
-   PROCESS ALL
-============================================================ */
-
-async function processAllDocuments(){
-
-    if(APP.processing){
-
-        alert(
-            "Processing is already running."
-        );
-
-        return;
-    }
-
-    APP.processing=true;
-
-    try{
-
-        const pending=
-            APP.documents.filter(
-                doc=>
-                    doc.status!=="processed"||
-                    !doc.ocrText
-            );
-
-        for(
-            let i=0;
-            i<pending.length;
-            i++
-        ){
-
-            setProgress(
-                i/
-                Math.max(1,pending.length)*
-                80,
-                `Processing ${i+1}/${pending.length}`
-            );
-
-            await processDocument(
-                pending[i]
-            );
-        }
-
-        setProgress(
-            85,
-            "Matching"
-        );
-
-        findMatches();
-
-        setProgress(
-            100,
-            "Complete"
-        );
-
-        log(
-            "Full accounting processing completed."
-        );
-
-    }finally{
-
-        APP.processing=false;
-    }
-
-    refreshUI();
-}
-
-
-/* ============================================================
-   UI REFRESH
-============================================================ */
-
-function renderReports(){
-    /* Defined above; kept as callable function. */
-    const container=
-        document.getElementById("reportsList");
-
-    if(!container)return;
-
-    if(!APP.reports.length){
-
-        container.innerHTML=`
-            <div class="empty">
-                No reports created yet.
-            </div>
-        `;
-
-        return;
-    }
-
-    container.innerHTML=
-        APP.reports.map(report=>`
-
-            <div class="card report-card"
-                 style="box-shadow:none;margin-bottom:10px">
-
-                <div class="report-status">
-
-                    <div>
-
-                        <strong>
-                            ${escapeHTML(report.title)}
-                        </strong>
-
-                        <div style="
-                            font-size:10px;
-                            color:#64748b;
-                            margin-top:3px;
-                        ">
-
-                            ${escapeHTML(
-                                report.project||""
-                            )}
-
-                            ${
-                                report.year
-                                ?" · "+escapeHTML(report.year)
-                                :""
-                            }
-
-                            · ${escapeHTML(report.currency)}
-
-                        </div>
-
-                    </div>
-
-                    <span class="badge badge-purple">
-                        Report
-                    </span>
-
-                </div>
-
-                <div style="
-                    display:grid;
-                    grid-template-columns:
-                        repeat(3,minmax(0,1fr));
-                    gap:8px;
-                    margin-top:12px;
-                ">
-
-                    <div class="kpi">
-                        <div class="kpi-label">
-                            Documents
-                        </div>
-                        <div class="kpi-value">
-                            ${report.documentCount}
-                        </div>
-                    </div>
-
-                    <div class="kpi">
-                        <div class="kpi-label">
-                            Matches
-                        </div>
-                        <div class="kpi-value">
-                            ${report.matchedCount}
-                        </div>
-                    </div>
-
-                    <div class="kpi">
-                        <div class="kpi-label">
-                            Total
-                        </div>
-                        <div class="kpi-value"
-                             style="font-size:14px">
-                            ${formatMoney(report.total)}
-                            ${escapeHTML(report.currency)}
-                        </div>
-                    </div>
-
-                </div>
-
-                <div style="margin-top:10px">
-
-                    <button
-                        class="btn btn-primary"
-                        onclick="exportReport('${report.id}')">
-                        Export
-                    </button>
-
-                    <button
-                        class="btn btn-outline"
-                        onclick="viewReport('${report.id}')">
-                        View
-                    </button>
-
-                    <button
-                        class="btn btn-danger"
-                        onclick="deleteReport('${report.id}')">
-                        Delete
-                    </button>
-
-                </div>
-
-            </div>
-
-        `).join("");
-}
-
-function refreshUI(){
-
-    refreshStats();
-    renderDocuments();
-    renderSources();
-    renderRepository();
-    renderMatches();
-    renderAccountingOutput();
-    renderReports();
-}
-
-
-/* ============================================================
-   MOBILE NAVIGATION
-============================================================ */
-
-document.getElementById(
-    "mobileMenu"
-).addEventListener(
-    "click",
-    ()=>{
-        document.getElementById(
-            "sidebar"
-        ).classList.toggle("open");
-    }
-);
-
-document.querySelectorAll(
-    ".nav-button"
-).forEach(button=>{
-
-    button.addEventListener(
-        "click",
-        ()=>{
-            navigate(
-                button.dataset.page
-            );
-        }
-    );
-});
-
-
-/* ============================================================
-   KEYBOARD SHORTCUTS
-============================================================ */
-
-document.addEventListener(
-    "keydown",
-    event=>{
-
-        if(
-            (event.ctrlKey||event.metaKey)&&
-            event.key.toLowerCase()==="k"
-        ){
-
-            event.preventDefault();
-
-            navigate("explorer");
-
-            document.getElementById(
-                "explorerSearch"
-            ).focus();
-        }
-
-        if(event.key==="Escape"){
-
-            closeCamera();
-            closeDocumentModal();
-        }
-    }
-);
-
-
-/* ============================================================
-   INIT
-============================================================ */
-
-async function init(){
-
-    loadState();
-
-    document.getElementById(
-        "settingWorkbook"
-    ).value=
-        APP.settings.workbook;
-
-    document.getElementById(
-        "settingAutoThreshold"
-    ).value=
-        APP.settings.autoThreshold;
-
-    document.getElementById(
-        "settingReviewThreshold"
-    ).value=
-        APP.settings.reviewThreshold;
-
-    document.getElementById(
-        "settingCurrency"
-    ).value=
-        APP.settings.defaultCurrency;
-
-    document.getElementById("settingAIProvider").value=APP.settings.ai.provider||"openai";
-    document.getElementById("settingAIModel").value=APP.settings.ai.model||"";
-    document.getElementById("settingAIKey").value=APP.settings.ai.apiKey||"";
-    document.getElementById("settingAIEndpoint").value=APP.settings.ai.endpoint||"";
-    document.getElementById("settingAITemperature").value=APP.settings.ai.temperature??0.2;
-    document.getElementById("settingAIMaxTokens").value=APP.settings.ai.maxTokens??1200;
-    document.getElementById("settingAISystemPrompt").value=APP.settings.ai.systemPrompt||"";
-    document.getElementById("aiManualPrompt").value=buildManualTransformersPrompt("","");
-    renderAIProviderHelp();
-
-    document.getElementById(
-        "reportCurrency"
-    ).value=
-        APP.settings.defaultCurrency;
-
-    refreshUI();
-
-    log(
-        "Accountant Assistant v2 initialized."
-    );
-
-    if(APP.documents.length){
-
-        log(
-            `${APP.documents.length} document(s) restored.`
-        );
-    }
-
-    window.addEventListener(
-        "beforeunload",
-        ()=>{
-
-            if(APP.cameraStream){
-
-                APP.cameraStream
-                    .getTracks()
-                    .forEach(
-                        track=>track.stop()
-                    );
-            }
-
-            if(APP.worker){
-
-                APP.worker.terminate();
-            }
-        }
-    );
-}
-
-init();
-
-
-/* ============================================================
-   DEBUG / FUTURE PYTHON API COMPATIBILITY
-============================================================ */
-
-window.AccountantAssistant={
-
-    APP,
-
-    navigate,
-
-    chooseFiles,
-
-    chooseFolder,
-
-    ingestFiles,
-
-    processAllDocuments,
-
-    findMatches,
-
-    createReport,
-
-    generateWorkbook,
-
-    mergeConfirmedGroups,
-
-    searchDocuments,
-
-    openDocument,
-
-    backupWorkspace
-
-};
 </script>
 
 </body>
